@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Wingetarium fragt nur die eigene Seite ab: die Daten liegen in ./data und werden jeden Morgen
+     von einem GitHub-Workflow aus dem winget-Index geschrieben. Keine fremden Skripte oder Schriften. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E1116">
+<meta name="description" content="Was im offiziellen winget-Verzeichnis steckt: handverlesene Pakete mit der Version von heute, Suche über alle Pakete, die wichtigsten Befehle und was winget nicht kann. Jeden Morgen neu, ohne Cookies, offline nutzbar.">
+<meta name="application-name" content="Wingetarium">
+<meta name="apple-mobile-web-app-title" content="Wingetarium">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dennismit2n.github.io/wingetarium/">
+<meta property="og:title" content="Wingetarium · the winget catalog, fresh every day">
+<meta property="og:description" content="What is really inside the official winget repository: hand-picked packages with today’s version, search across every package, the commands you need and what winget cannot do. Updated every morning, no cookies, works offline.">
+<meta property="og:image" content="https://dennismit2n.github.io/wingetarium/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dark graphic with the Wingetarium icon and name and the line: the winget catalog, fresh every day.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="icon" href="./icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>Wingetarium · der winget-Katalog, täglich frisch</title>
+<script>
+/* Vor dem ersten Bild: gemeinsame Darstellung der Werkstatt setzen (werkstatt.darstellung),
+   sonst blitzt kurz die falsche Farbe auf. Grundzustand ohne Wahl ist dunkel. */
+(function () {
+  var d = document.documentElement;
+  try {
+    var th = localStorage.getItem('werkstatt.darstellung');
+    var mm = window.matchMedia, ts = null, vs = null;
+    if (th === 'light' || th === 'dark') ts = th;
+    else if (th === 'hc-dark' || th === 'hc-light') { ts = th.slice(3); vs = 'contrast'; }
+    else if (th === 'cvd-dark' || th === 'cvd-light') { ts = th.slice(4); vs = 'cvd'; }
+    else if (th === 'invert') vs = 'invert';
+    else if (th && /dark/.test(th)) ts = 'dark';
+    else if (th && /light/.test(th)) ts = 'light';
+    else if (mm && mm('(prefers-contrast: more)').matches) { ts = mm('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; vs = 'contrast'; }
+    if (ts) d.setAttribute('data-theme', ts);
+    if (vs) d.setAttribute('data-vision', vs);
+  } catch (e) {}
+  /* beforeinstallprompt kann kommen, bevor das Skript am Seitenende läuft: hier aufheben. */
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    window.zuInstall = e;
+    if (window.zuInstallZeigen) window.zuInstallZeigen();
+  });
+})();
+</script>
+<!-- Bei jedem Deploy, der CSS oder JS ändert: ?v= hochsetzen UND in sw.js den CACHE. -->
+<link rel="stylesheet" href="./fonts/plex.css?v=2026-11-12b">
+<link rel="stylesheet" href="./style.css?v=2026-11-12b">
+</head>
+<body>
+<header class="mast">
+  <div class="mast-in">
+    <div class="kopf">
+      <div class="eyebrow">
+        <span data-i="eyebrowSource">Windows Package Manager</span><span class="sep" aria-hidden="true">/</span>
+        <span id="eb-stand"></span><span class="sep" aria-hidden="true">/</span>
+        <span id="eb-pkgs"></span>
+      </div>
+      <div class="wahl">
+        <button class="knopf akzent" id="installieren" type="button" hidden data-i="install">Installieren</button>
+        <label class="feld"><span class="vh" data-i="language">Sprache</span>
+          <select id="sprache"></select></label>
+        <label class="feld"><span class="vh" data-i="theme">Darstellung</span>
+          <select id="darstellung"></select></label>
+      </div>
+    </div>
+    <h1><img src="./favicon.svg" alt="" width="40" height="40">Wingetarium</h1>
+    <p class="dek" id="dek"></p>
+    <div class="tabs" role="tablist" data-i-aria="tabsLabel" aria-label="Abschnitte">
+      <button class="tab" role="tab" id="tab-o" aria-controls="p-o" data-i="tabOverview">Überblick</button>
+      <button class="tab" role="tab" id="tab-k" aria-controls="p-k" data-i="tabCatalog">Auswahl</button>
+      <button class="tab" role="tab" id="tab-a" aria-controls="p-a" data-i="tabSearch">Alle Pakete</button>
+      <button class="tab" role="tab" id="tab-n" aria-controls="p-n" data-i="tabNew">Neu</button>
+      <button class="tab" role="tab" id="tab-b" aria-controls="p-b" data-i="tabCommands">Befehle</button>
+      <button class="tab" role="tab" id="tab-g" aria-controls="p-g" data-i="tabLimits">Grenzen</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+<p class="hinweis" id="hinweis" hidden></p>
+
+<section role="tabpanel" id="p-o" aria-labelledby="tab-o" hidden>
+  <div class="stack">
+    <div class="figs" id="figs"></div>
+    <div class="two">
+      <div class="panel">
+        <h2 data-i="whatTitle"></h2>
+        <p data-h="what1"></p><p data-h="what2"></p><p data-h="what3" class="last"></p>
+      </div>
+      <div class="panel">
+        <h2 data-i="sourcesTitle"></h2>
+        <div class="stack gap16">
+          <div class="src"><h3>winget</h3><p class="klein" id="src-winget"></p><div class="u">cdn.winget.microsoft.com/cache</div></div>
+          <div class="src"><h3>msstore</h3><p class="klein" data-h="srcStore"></p><div class="u">storeedgefd.dsx.mp.microsoft.com</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2 data-i="tagsTitle"></h2>
+      <p class="klein" id="tags-intro"></p>
+      <div class="bars" id="bars"></div>
+      <p class="note" id="tags-note"></p>
+    </div>
+    <div class="panel">
+      <h2 data-i="growTitle"></h2>
+      <p id="grow"></p>
+      <figure class="kurve"><figcaption class="klein" data-i="growChart"></figcaption><div id="kurve"></div></figure>
+      <p class="note" data-i="growChartNote"></p>
+    </div>
+  </div>
+</section>
+
+<section role="tabpanel" id="p-k" aria-labelledby="tab-k" hidden>
+  <div class="controls">
+    <input class="search" id="q" type="search" autocomplete="off" spellcheck="false">
+    <span class="count" id="count"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="tbl-wrap">
+    <table class="auswahl">
+      <colgroup><col class="w-id"><col class="w-name"><col class="w-cat"><col class="w-ver"><col class="w-cost"><col class="w-why"></colgroup>
+      <thead><tr>
+        <th data-k="id" tabindex="0" scope="col" data-i="colId"></th>
+        <th data-k="name" tabindex="0" scope="col" data-i="colName"></th>
+        <th data-k="cat" tabindex="0" scope="col" data-i="colCat"></th>
+        <th data-k="v" tabindex="0" scope="col" data-i="colVersion"></th>
+        <th data-k="cost" tabindex="0" scope="col" data-i="colCost"></th>
+        <th data-k="why" tabindex="0" scope="col" data-i="colWhy"></th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden data-i="empty"></div>
+  </div>
+  <p class="note" data-h="catalogNote"></p>
+  <p class="note" id="fehlt" hidden></p>
+</section>
+
+<section role="tabpanel" id="p-a" aria-labelledby="tab-a" hidden>
+  <p class="klein" data-i="searchAllIntro"></p>
+  <div class="controls">
+    <input class="search" id="qa" type="search" autocomplete="off" spellcheck="false">
+    <span class="count" id="count-a"></span>
+  </div>
+  <div class="tbl-wrap">
+    <table class="alle">
+      <colgroup><col class="w-aid"><col class="w-aname"><col class="w-aver"><col class="w-amon"></colgroup>
+      <thead><tr>
+        <th scope="col" data-i="colId"></th><th scope="col" data-i="colName"></th>
+        <th scope="col" data-i="colVersion"></th><th scope="col" data-i="colMoniker"></th>
+      </tr></thead>
+      <tbody id="rows-a"></tbody>
+    </table>
+    <div class="empty" id="empty-a"></div>
+  </div>
+</section>
+
+<section role="tabpanel" id="p-n" aria-labelledby="tab-n" hidden>
+  <div class="panel">
+    <h2 data-i="newTitle"></h2>
+    <p class="klein" id="new-intro"></p>
+    <div id="neu"></div>
+  </div>
+</section>
+
+<section role="tabpanel" id="p-b" aria-labelledby="tab-b" hidden>
+  <div class="stack">
+    <div class="panel"><p class="lead last" data-h="cmdLead"></p></div>
+    <div class="panel" id="cmds"></div>
+  </div>
+</section>
+
+<section role="tabpanel" id="p-g" aria-labelledby="tab-g" hidden>
+  <div class="stack">
+    <div class="panel">
+      <h2 data-i="limitsTitle"></h2>
+      <p class="klein" data-i="limitsIntro"></p>
+      <div class="verdicts" id="verdicts"></div>
+    </div>
+    <div class="callout"><h3 data-i="ytTitle"></h3><p data-h="yt"></p></div>
+    <div class="panel"><h2 data-i="howTitle"></h2><p class="last" id="how"></p></div>
+  </div>
+</section>
+
+<footer class="foot" data-h="foot"></footer>
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="./app.js?v=2026-11-12"></script>
+</body>
+</html>

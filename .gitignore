@@ -1,0 +1,14 @@
+# Private Arbeitsnotizen
+_intern/
+
+# Python
+__pycache__/
+*.pyc
+
+# Betriebssystem
+Thumbs.db
+desktop.ini
+*.log
+
+# Claude-Code-Einstellungen
+.claude/

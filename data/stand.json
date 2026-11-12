@@ -1,0 +1,568 @@
+{
+ "stand": "2026-11-12T14:53:31Z",
+ "abgerufen": "2026-11-12T16:51:20Z",
+ "pakete": 16365,
+ "manifeste": 194528,
+ "versionen": 70118,
+ "kurznamen": 5980,
+ "herausgeber": [
+  [
+   "Microsoft",
+   467
+  ],
+  [
+   "Mozilla",
+   460
+  ],
+  [
+   "VovSoft",
+   177
+  ],
+  [
+   "Altova",
+   105
+  ],
+  [
+   "KDE",
+   103
+  ]
+ ],
+ "tags": [
+  [
+   "cli",
+   1010
+  ],
+  [
+   "ai",
+   774
+  ],
+  [
+   "windows",
+   504
+  ],
+  [
+   "web",
+   494
+  ],
+  [
+   "cross-platform",
+   470
+  ],
+  [
+   "browser",
+   446
+  ],
+  [
+   "llm",
+   442
+  ],
+  [
+   "rust",
+   386
+  ],
+  [
+   "video",
+   376
+  ],
+  [
+   "audio",
+   370
+  ],
+  [
+   "web-browser",
+   356
+  ],
+  [
+   "programming",
+   353
+  ],
+  [
+   "terminal",
+   352
+  ],
+  [
+   "editor",
+   350
+  ],
+  [
+   "foss",
+   339
+  ],
+  [
+   "agent",
+   337
+  ],
+  [
+   "large-language-model",
+   336
+  ],
+  [
+   "java",
+   329
+  ],
+  [
+   "electron",
+   325
+  ],
+  [
+   "developer-tools",
+   323
+  ]
+ ],
+ "auswahl": {
+  "Mozilla.Firefox": {
+   "v": "160.0",
+   "n": "Mozilla Firefox (en-US)"
+  },
+  "Google.Chrome": {
+   "v": "156.0.8078.80",
+   "n": "Google Chrome"
+  },
+  "Brave.Brave": {
+   "v": "157.1.99.56",
+   "n": "Brave"
+  },
+  "Vivaldi.Vivaldi": {
+   "v": "8.3.4191.35",
+   "n": "Vivaldi"
+  },
+  "Zen-Team.Zen-Browser": {
+   "v": "1.24.1b",
+   "n": "Zen Browser"
+  },
+  "LibreWolf.LibreWolf": {
+   "v": "160.0-1",
+   "n": "LibreWolf"
+  },
+  "Microsoft.Edge": {
+   "v": "156.0.4314.58",
+   "n": "Microsoft Edge"
+  },
+  "Microsoft.VisualStudioCode": {
+   "v": "1.145.3",
+   "n": "Microsoft Visual Studio Code"
+  },
+  "ZedIndustries.Zed": {
+   "v": "1.28.1",
+   "n": "Zed"
+  },
+  "Microsoft.VisualStudio.2022.Community": {
+   "v": "17.14.45",
+   "n": "Visual Studio Community 2022"
+  },
+  "JetBrains.Toolbox": {
+   "v": "3.9.1.0",
+   "n": "JetBrains Toolbox"
+  },
+  "Notepad++.Notepad++": {
+   "v": "8.9.9.1",
+   "n": "Notepad++"
+  },
+  "SublimeHQ.SublimeText.4": {
+   "v": "4.0.0.421500",
+   "n": "Sublime Text 4"
+  },
+  "Neovim.Neovim": {
+   "v": "0.12.6",
+   "n": "Neovim"
+  },
+  "GodotEngine.GodotEngine": {
+   "v": "4.7.2",
+   "n": "Godot Engine"
+  },
+  "GodotEngine.GodotEngine.Mono": {
+   "v": "4.7.2",
+   "n": "Godot Engine (Mono)"
+  },
+  "Microsoft.WindowsTerminal": {
+   "v": "1.25.3131.0",
+   "n": "Windows Terminal"
+  },
+  "Microsoft.PowerShell": {
+   "v": "7.7.0.0",
+   "n": "PowerShell"
+  },
+  "JanDeDobbeleer.OhMyPosh": {
+   "v": "32.0.0",
+   "n": "Oh My Posh"
+  },
+  "Starship.Starship": {
+   "v": "1.27.0",
+   "n": "starship"
+  },
+  "Microsoft.PowerToys": {
+   "v": "0.102.3101",
+   "n": "PowerToys"
+  },
+  "Microsoft.WSL": {
+   "v": "3.0.5",
+   "n": "Windows Subsystem for Linux"
+  },
+  "Canonical.Ubuntu.2404": {
+   "v": "2404.0.5.0",
+   "n": "Ubuntu 24.04 LTS"
+  },
+  "Python.Python.3.13": {
+   "v": "3.13.17",
+   "n": "Python 3.13"
+  },
+  "OpenJS.NodeJS.LTS": {
+   "v": "26.13.1",
+   "n": "Node.js (LTS)"
+  },
+  "Microsoft.DotNet.SDK.9": {
+   "v": "9.0.321",
+   "n": "Microsoft .NET SDK 9.0"
+  },
+  "Rustlang.Rustup": {
+   "v": "1.29.3",
+   "n": "Rustup: the Rust toolchain installer"
+  },
+  "GoLang.Go": {
+   "v": "1.27.4",
+   "n": "Go Programming Language"
+  },
+  "EclipseAdoptium.Temurin.21.JDK": {
+   "v": "21.0.13.9",
+   "n": "Eclipse Temurin JDK with Hotspot 21"
+  },
+  "Microsoft.VCRedist.2015+.x64": {
+   "v": "14.52.37029.0",
+   "n": "Microsoft Visual C++ v14 Redistributable (x64)"
+  },
+  "Microsoft.DirectX": {
+   "v": "9.29.1974.0",
+   "n": "DirectX End-User Runtime Installer"
+  },
+  "Microsoft.WindowsSDK.10.0.26100": {
+   "v": "10.0.26100.7705",
+   "n": "Windows Software Development Kit - Windows 10.0.26100.4188"
+  },
+  "RedHat.Podman": {
+   "v": "5.8.10",
+   "n": "Podman"
+  },
+  "RedHat.Podman-Desktop": {
+   "v": "1.30.5",
+   "n": "Podman Desktop"
+  },
+  "Docker.DockerDesktop": {
+   "v": "4.99.0",
+   "n": "Docker Desktop"
+  },
+  "Oracle.VirtualBox": {
+   "v": "7.2.22",
+   "n": "Oracle VirtualBox"
+  },
+  "Git.Git": {
+   "v": "2.56.0.4",
+   "n": "Git"
+  },
+  "GitHub.cli": {
+   "v": "2.103.3",
+   "n": "GitHub CLI"
+  },
+  "GitHub.GitHubDesktop": {
+   "v": "3.6.11",
+   "n": "GitHub Desktop"
+  },
+  "TortoiseGit.TortoiseGit": {
+   "v": "2.19.1.0",
+   "n": "TortoiseGit"
+  },
+  "7zip.7zip": {
+   "v": "26.06",
+   "n": "7-Zip"
+  },
+  "M2Team.NanaZip": {
+   "v": "7.0.1882.0",
+   "n": "NanaZip"
+  },
+  "RARLab.WinRAR": {
+   "v": "7.23.0",
+   "n": "WinRAR"
+  },
+  "voidtools.Everything": {
+   "v": "1.4.1.1032",
+   "n": "Everything"
+  },
+  "AntibodySoftware.WizTree": {
+   "v": "4.33",
+   "n": "WizTree"
+  },
+  "WinDirStat.WinDirStat": {
+   "v": "2.9.3",
+   "n": "WinDirStat"
+  },
+  "Syncthing.Syncthing": {
+   "v": "2.1.7",
+   "n": "Syncthing"
+  },
+  "Nextcloud.NextcloudDesktop": {
+   "v": "35.0.3",
+   "n": "Nextcloud"
+  },
+  "VideoLAN.VLC": {
+   "v": "3.0.24",
+   "n": "VLC media player"
+  },
+  "clsid2.mpc-hc": {
+   "v": "2.8.5",
+   "n": "MPC-HC"
+  },
+  "mpv.net": {
+   "v": "7.1.2.0",
+   "n": "mpv.net"
+  },
+  "PeterPawlowski.foobar2000": {
+   "v": "2.26.2",
+   "n": "foobar2000"
+  },
+  "TIDALMusicAS.TIDAL": {
+   "v": "2.48.0",
+   "n": "TIDAL"
+  },
+  "Spotify.Spotify": {
+   "v": "1.3.9.2055.g806b5b278de8",
+   "n": "Spotify"
+  },
+  "th-ch.YouTubeMusic": {
+   "v": "3.12.0",
+   "n": "YouTube Music"
+  },
+  "Audacity.Audacity": {
+   "v": "4.0.2.263060742",
+   "n": "Audacity"
+  },
+  "Gyan.FFmpeg": {
+   "v": "9.0.2",
+   "n": "FFmpeg"
+  },
+  "HandBrake.HandBrake": {
+   "v": "1.11.2",
+   "n": "HandBrake"
+  },
+  "OBSProject.OBSStudio": {
+   "v": "33.0.0",
+   "n": "OBS Studio"
+  },
+  "yt-dlp.yt-dlp": {
+   "v": "2026.10.26",
+   "n": "yt-dlp"
+  },
+  "GIMP.GIMP": {
+   "v": "3.2.6",
+   "n": "GIMP"
+  },
+  "Inkscape.Inkscape": {
+   "v": "1.4.4",
+   "n": "Inkscape"
+  },
+  "KDE.Krita": {
+   "v": "5.3.4.1",
+   "n": "Krita"
+  },
+  "BlenderFoundation.Blender": {
+   "v": "5.3.0",
+   "n": "blender"
+  },
+  "ShareX.ShareX": {
+   "v": "22.4.0",
+   "n": "ShareX"
+  },
+  "Flameshot.Flameshot": {
+   "v": "15.0.0",
+   "n": "Flameshot"
+  },
+  "Valve.Steam": {
+   "v": "2.10.91.91",
+   "n": "Steam"
+  },
+  "EpicGames.EpicGamesLauncher": {
+   "v": "1.3.210.0",
+   "n": "Epic Games Launcher"
+  },
+  "GOG.Galaxy": {
+   "v": "2.1.10.56",
+   "n": "GOG GALAXY"
+  },
+  "ElectronicArts.EADesktop": {
+   "v": "13.822.0.6335",
+   "n": "EA app"
+  },
+  "Ubisoft.Connect": {
+   "v": "175.1.0.13416",
+   "n": "Ubisoft Connect"
+  },
+  "Discord.Discord": {
+   "v": "1.0.9268",
+   "n": "Discord"
+  },
+  "Nvidia.GeForceNow": {
+   "v": "2.0.90.126",
+   "n": "NVIDIA GeForce NOW"
+  },
+  "Orbmu2k.nvidiaProfileInspector": {
+   "v": "3.0.2.3",
+   "n": "NVIDIA Profile Inspector"
+  },
+  "REALiX.HWiNFO": {
+   "v": "8.54",
+   "n": "HWiNFO®"
+  },
+  "CPUID.HWMonitor": {
+   "v": "1.68",
+   "n": "CPUID HWMonitor"
+  },
+  "CPUID.CPU-Z": {
+   "v": "3.02",
+   "n": "CPUID CPU-Z"
+  },
+  "TechPowerUp.GPU-Z": {
+   "v": "2.71.0",
+   "n": "TechPowerUp GPU-Z"
+  },
+  "CrystalDewWorld.CrystalDiskInfo": {
+   "v": "9.9.4",
+   "n": "CrystalDiskInfo"
+  },
+  "CrystalDewWorld.CrystalDiskMark": {
+   "v": "9.0.3",
+   "n": "CrystalDiskMark"
+  },
+  "Microsoft.Sysinternals.Suite": {
+   "v": "2026-10-15",
+   "n": "Sysinternals Suite"
+  },
+  "Microsoft.Sysinternals.ProcessExplorer": {
+   "v": "17.2",
+   "n": "Process Explorer"
+  },
+  "Microsoft.Sysinternals.RAMMap": {
+   "v": "1.63",
+   "n": "RAMMap"
+  },
+  "Microsoft.Sysinternals.Autoruns": {
+   "v": "14.3",
+   "n": "Autoruns"
+  },
+  "RevoUninstaller.RevoUninstaller": {
+   "v": "2.7.2",
+   "n": "Revo Uninstaller"
+  },
+  "Rufus.Rufus": {
+   "v": "4.15",
+   "n": "Rufus"
+  },
+  "Balena.Etcher": {
+   "v": "2.1.9",
+   "n": "balenaEtcher"
+  },
+  "WinSCP.WinSCP": {
+   "v": "6.7.1",
+   "n": "WinSCP"
+  },
+  "PuTTY.PuTTY": {
+   "v": "0.85.0.0",
+   "n": "PuTTY"
+  },
+  "Termius.Termius": {
+   "v": "10.4.1",
+   "n": "Termius"
+  },
+  "Mobatek.MobaXterm": {
+   "v": "26.6.0.5560",
+   "n": "MobaXterm"
+  },
+  "Postman.Postman": {
+   "v": "12.36.3",
+   "n": "Postman"
+  },
+  "Insomnia.Insomnia": {
+   "v": "13.4.0",
+   "n": "Insomnia"
+  },
+  "qBittorrent.qBittorrent": {
+   "v": "5.3.0",
+   "n": "qBittorrent"
+  },
+  "Bitwarden.Bitwarden": {
+   "v": "2026.10.4",
+   "n": "Bitwarden"
+  },
+  "KeePassXCTeam.KeePassXC": {
+   "v": "2.8.0",
+   "n": "KeePassXC"
+  },
+  "IDRIX.VeraCrypt": {
+   "v": "1.26.31",
+   "n": "VeraCrypt"
+  },
+  "Microsoft.Sysinternals.TCPView": {
+   "v": "4.19",
+   "n": "TCPView"
+  },
+  "TheDocumentFoundation.LibreOffice": {
+   "v": "26.8.2.2",
+   "n": "LibreOffice"
+  },
+  "Obsidian.Obsidian": {
+   "v": "1.15.0",
+   "n": "Obsidian"
+  },
+  "Joplin.Joplin": {
+   "v": "3.7.22",
+   "n": "Joplin"
+  },
+  "Notion.Notion": {
+   "v": "7.43.0",
+   "n": "Notion"
+  },
+  "Qalculate.Qalculate": {
+   "v": "5.13.2",
+   "n": "Qalculate!"
+  },
+  "Mozilla.Thunderbird": {
+   "v": "160.0",
+   "n": "Mozilla Thunderbird (en-US)"
+  },
+  "Telegram.TelegramDesktop": {
+   "v": "7.4.2",
+   "n": "Telegram Desktop"
+  },
+  "Zoom.Zoom": {
+   "v": "7.2.51704",
+   "n": "Zoom Workplace"
+  },
+  "Anthropic.Claude": {
+   "v": "3.6556.2",
+   "n": "Claude"
+  },
+  "Anthropic.ClaudeCode": {
+   "v": "2.1.318",
+   "n": "Claude Code"
+  }
+ },
+ "fehlt": [],
+ "grenzen": {
+  "treiber": 89,
+  "schriften": 23,
+  "firefoxSprachen": 310,
+  "anzeigetreiber": [],
+  "signal": true,
+  "musicbee": false
+ },
+ "neu": [],
+ "verlauf": [
+  [
+   "2026-09-22",
+   14940,
+   174420
+  ],
+  [
+   "2026-11-12",
+   16365,
+   194528
+  ]
+ ]
+}
