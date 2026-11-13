@@ -1,14 +1,14 @@
 {
- "stand": "2026-11-12T16:18:37Z",
- "abgerufen": "2026-11-12T17:47:31Z",
- "pakete": 16365,
- "manifeste": 194567,
- "versionen": 70128,
- "kurznamen": 5980,
+ "stand": "2026-11-13T12:00:38Z",
+ "abgerufen": "2026-11-13T13:09:51Z",
+ "pakete": 16373,
+ "manifeste": 194885,
+ "versionen": 70227,
+ "kurznamen": 5993,
  "herausgeber": [
   [
    "Microsoft",
-   467
+   462
   ],
   [
    "Mozilla",
@@ -30,15 +30,15 @@
  "tags": [
   [
    "cli",
-   1010
+   1013
   ],
   [
    "ai",
-   774
+   775
   ],
   [
    "windows",
-   504
+   507
   ],
   [
    "web",
@@ -46,7 +46,7 @@
   ],
   [
    "cross-platform",
-   470
+   472
   ],
   [
    "browser",
@@ -58,31 +58,31 @@
   ],
   [
    "rust",
-   386
+   389
   ],
   [
    "video",
-   376
+   377
   ],
   [
    "audio",
-   370
+   371
   ],
   [
    "web-browser",
    356
   ],
   [
+   "terminal",
+   355
+  ],
+  [
    "programming",
    353
   ],
   [
-   "terminal",
-   352
-  ],
-  [
    "editor",
-   350
+   352
   ],
   [
    "foss",
@@ -102,7 +102,7 @@
   ],
   [
    "electron",
-   325
+   326
   ],
   [
    "developer-tools",
@@ -115,7 +115,7 @@
    "n": "Mozilla Firefox (en-US)"
   },
   "Google.Chrome": {
-   "v": "156.0.8078.80",
+   "v": "157.0.8103.79",
    "n": "Google Chrome"
   },
   "Brave.Brave": {
@@ -139,7 +139,7 @@
    "n": "Microsoft Edge"
   },
   "Microsoft.VisualStudioCode": {
-   "v": "1.145.3",
+   "v": "1.146.0",
    "n": "Microsoft Visual Studio Code"
   },
   "ZedIndustries.Zed": {
@@ -259,7 +259,7 @@
    "n": "Git"
   },
   "GitHub.cli": {
-   "v": "2.103.3",
+   "v": "2.104.0",
    "n": "GitHub CLI"
   },
   "GitHub.GitHubDesktop": {
@@ -387,7 +387,7 @@
    "n": "GOG GALAXY"
   },
   "ElectronicArts.EADesktop": {
-   "v": "13.822.0.6335",
+   "v": "13.827.2.6342",
    "n": "EA app"
   },
   "Ubisoft.Connect": {
@@ -475,7 +475,7 @@
    "n": "MobaXterm"
   },
   "Postman.Postman": {
-   "v": "12.36.3",
+   "v": "12.36.4",
    "n": "Postman"
   },
   "Insomnia.Insomnia": {
@@ -503,11 +503,11 @@
    "n": "TCPView"
   },
   "TheDocumentFoundation.LibreOffice": {
-   "v": "26.8.2.2",
+   "v": "26.8.3.1",
    "n": "LibreOffice"
   },
   "Obsidian.Obsidian": {
-   "v": "1.15.0",
+   "v": "1.15.1",
    "n": "Obsidian"
   },
   "Joplin.Joplin": {
@@ -515,7 +515,7 @@
    "n": "Joplin"
   },
   "Notion.Notion": {
-   "v": "7.43.0",
+   "v": "7.43.2",
    "n": "Notion"
   },
   "Qalculate.Qalculate": {
@@ -527,7 +527,7 @@
    "n": "Mozilla Thunderbird (en-US)"
   },
   "Telegram.TelegramDesktop": {
-   "v": "7.4.2",
+   "v": "7.4.3",
    "n": "Telegram Desktop"
   },
   "Zoom.Zoom": {
@@ -552,7 +552,123 @@
   "signal": true,
   "musicbee": false
  },
- "neu": [],
+ "neu": [
+  {
+   "d": "2026-11-13",
+   "p": [
+    [
+     "APPIT.VideoDownloader",
+     "VideoDownloader",
+     "0.7.0"
+    ],
+    [
+     "AurelioAvila.PCTweakerUninstaller",
+     "PC Tweaker Uninstaller",
+     "0.15.2"
+    ],
+    [
+     "chamal-code.pathdoc",
+     "pathdoc",
+     "0.1.1"
+    ],
+    [
+     "Cristiano.Chrono",
+     "Chrono",
+     "2.0.0"
+    ],
+    [
+     "DeepSeek.DeepSeekHarness",
+     "DeepSeek Harness",
+     "0.1.7-rc.1.20260924.1"
+    ],
+    [
+     "DIYgod.Pinky",
+     "Pinky",
+     "2026.1113.16"
+    ],
+    [
+     "ElroiTheCreator.HolyBible",
+     "Holy Bible - வேதம்",
+     "1.1.0"
+    ],
+    [
+     "Gagarin.gg",
+     "gg",
+     "0.34.1"
+    ],
+    [
+     "jddev273.QueryBit",
+     "QueryBit",
+     "0.1.0"
+    ],
+    [
+     "KangLin.RabbitRemoteControl",
+     "Rabbit Remote Control",
+     "0.0.37"
+    ],
+    [
+     "LibreKAT.OciDeck",
+     "OciDeck",
+     "0.6.3"
+    ],
+    [
+     "O2CSI.Candeo",
+     "Candeo",
+     "0.22.0"
+    ],
+    [
+     "p6laris.Void",
+     "Void",
+     "1.0.0"
+    ],
+    [
+     "PearTreeForge.SparkDown",
+     "SparkDown",
+     "0.3.1"
+    ],
+    [
+     "ptrinh.VietTelex",
+     "VietTelex",
+     "1.3.26"
+    ],
+    [
+     "Recly.Recly",
+     "Recly",
+     "0.1.32"
+    ],
+    [
+     "RonsPlaceSoftware.RonsFileWrangler",
+     "Rons File Wrangler",
+     "2026.08.24.1035"
+    ],
+    [
+     "sodahub-org.SodaM",
+     "SodaM",
+     "0.3.8"
+    ],
+    [
+     "SosomLab.NexaSQL",
+     "Nexa SQL",
+     "0.5.0"
+    ],
+    [
+     "tth05.Reverything",
+     "Reverything",
+     "1.2.2"
+    ],
+    [
+     "VolodymyrKuksynok.MarkPad++",
+     "MarkPad++",
+     "1.0.3"
+    ],
+    [
+     "zeroy1024.Burrow",
+     "Burrow",
+     "0.1.9"
+    ]
+   ]
+  }
+ ],
  "verlauf": [
   [
    "2026-09-22",
@@ -563,6 +679,11 @@
    "2026-11-12",
    16365,
    194567
+  ],
+  [
+   "2026-11-13",
+   16373,
+   194885
   ]
  ]
 }
