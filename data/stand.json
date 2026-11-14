@@ -1,14 +1,14 @@
 {
- "stand": "2026-11-13T12:00:38Z",
- "abgerufen": "2026-11-13T13:09:51Z",
- "pakete": 16373,
- "manifeste": 194885,
- "versionen": 70227,
- "kurznamen": 5993,
+ "stand": "2026-11-14T10:54:53Z",
+ "abgerufen": "2026-11-14T12:14:17Z",
+ "pakete": 16395,
+ "manifeste": 195235,
+ "versionen": 70307,
+ "kurznamen": 6010,
  "herausgeber": [
   [
    "Microsoft",
-   462
+   463
   ],
   [
    "Mozilla",
@@ -30,11 +30,11 @@
  "tags": [
   [
    "cli",
-   1013
+   1017
   ],
   [
    "ai",
-   775
+   780
   ],
   [
    "windows",
@@ -54,7 +54,7 @@
   ],
   [
    "llm",
-   442
+   445
   ],
   [
    "rust",
@@ -62,11 +62,11 @@
   ],
   [
    "video",
-   377
+   379
   ],
   [
    "audio",
-   371
+   372
   ],
   [
    "web-browser",
@@ -78,35 +78,35 @@
   ],
   [
    "programming",
-   353
+   354
   ],
   [
    "editor",
-   352
+   353
+  ],
+  [
+   "agent",
+   340
   ],
   [
    "foss",
    339
   ],
   [
-   "agent",
+   "large-language-model",
    337
   ],
   [
-   "large-language-model",
-   336
+   "java",
+   330
   ],
   [
-   "java",
-   329
+   "developer-tools",
+   326
   ],
   [
    "electron",
    326
-  ],
-  [
-   "developer-tools",
-   323
   ]
  ],
  "auswahl": {
@@ -123,7 +123,7 @@
    "n": "Brave"
   },
   "Vivaldi.Vivaldi": {
-   "v": "8.3.4191.35",
+   "v": "8.3.4191.44",
    "n": "Vivaldi"
   },
   "Zen-Team.Zen-Browser": {
@@ -527,7 +527,7 @@
    "n": "Mozilla Thunderbird (en-US)"
   },
   "Telegram.TelegramDesktop": {
-   "v": "7.4.3",
+   "v": "7.4.4",
    "n": "Telegram Desktop"
   },
   "Zoom.Zoom": {
@@ -553,6 +553,121 @@
   "musicbee": false
  },
  "neu": [
+  {
+   "d": "2026-11-14",
+   "p": [
+    [
+     "Batronix.Prog-Express",
+     "Prog-Express",
+     "3.9.5.0"
+    ],
+    [
+     "DozenPartsOfTheKing.Glo",
+     "Glo",
+     "1.0.0"
+    ],
+    [
+     "earubioc.MDK",
+     "MDK",
+     "2.9.1"
+    ],
+    [
+     "HarjjotSinghh.Helicon",
+     "Helicon",
+     "0.21.1"
+    ],
+    [
+     "HOL.Guard",
+     "HOL Guard",
+     "3.0.92"
+    ],
+    [
+     "IBM.Semeru.27.JRE",
+     "IBM Semeru Runtime Open Edition (JRE) 27",
+     "27.0.1.0"
+    ],
+    [
+     "ISpotify.ISpotify",
+     "iSpotify",
+     "18.0.0"
+    ],
+    [
+     "jmrplens.libgen-mcp",
+     "libgen-mcp",
+     "1.7.2"
+    ],
+    [
+     "Latias94.MermanCLI",
+     "Merman CLI",
+     "0.10.0"
+    ],
+    [
+     "Microsoft.Gaming.XBOXDeveloperCLI",
+     "XBOX Developer CLI",
+     "0.2.1"
+    ],
+    [
+     "MrErrorSan.ThinkVisionControl",
+     "ThinkVision Control",
+     "0.0.7"
+    ],
+    [
+     "NanmiCoder.ClaudeCodeHaha",
+     "Claude Code Haha",
+     "0.7.8"
+    ],
+    [
+     "NitinYadav.CampusConnect",
+     "CURAJ Campus Connect",
+     "1.1.0"
+    ],
+    [
+     "ParoStatus.ParoStatusXML",
+     "ParoStatus.de XML",
+     "85.5"
+    ],
+    [
+     "PROJECTTEAMFORYOU.WindowLayout",
+     "WindowLayout",
+     "1.3.0"
+    ],
+    [
+     "RenderCoder.PlaneCLI",
+     "plane-cli",
+     "0.1.3"
+    ],
+    [
+     "SnifferLP.Mnemo",
+     "Mnemo",
+     "1.2.5"
+    ],
+    [
+     "stixez.SyncCrate",
+     "SyncCrate",
+     "0.8.8"
+    ],
+    [
+     "TechSmith.Snagit.2027",
+     "Snagit 2027",
+     "27.0.0"
+    ],
+    [
+     "Unseenkey.Unseenkey",
+     "Unseenkey",
+     "0.1.9"
+    ],
+    [
+     "vdnp.ProjeYoneticisi",
+     "Proje Yöneticisi",
+     "1.2.0"
+    ],
+    [
+     "Verdictan.Verdictan",
+     "Verdictan",
+     "0.6.30"
+    ]
+   ]
+  },
   {
    "d": "2026-11-13",
    "p": [
@@ -684,6 +799,11 @@
    "2026-11-13",
    16373,
    194885
+  ],
+  [
+   "2026-11-14",
+   16395,
+   195235
   ]
  ]
 }
