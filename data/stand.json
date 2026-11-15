@@ -1,10 +1,10 @@
 {
- "stand": "2026-11-14T10:54:53Z",
- "abgerufen": "2026-11-14T12:14:17Z",
- "pakete": 16395,
- "manifeste": 195235,
- "versionen": 70307,
- "kurznamen": 6010,
+ "stand": "2026-11-15T11:26:35Z",
+ "abgerufen": "2026-11-15T12:47:02Z",
+ "pakete": 16396,
+ "manifeste": 195471,
+ "versionen": 70380,
+ "kurznamen": 6016,
  "herausgeber": [
   [
    "Microsoft",
@@ -327,7 +327,7 @@
    "n": "Spotify"
   },
   "th-ch.YouTubeMusic": {
-   "v": "3.12.0",
+   "v": "3.12.1",
    "n": "YouTube Music"
   },
   "Audacity.Audacity": {
@@ -553,6 +553,16 @@
   "musicbee": false
  },
  "neu": [
+  {
+   "d": "2026-11-15",
+   "p": [
+    [
+     "AniDavid.AutoLangSwitcher",
+     "AutoLangSwitcher",
+     "1.0.2"
+    ]
+   ]
+  },
   {
    "d": "2026-11-14",
    "p": [
@@ -804,6 +814,11 @@
    "2026-11-14",
    16395,
    195235
+  ],
+  [
+   "2026-11-15",
+   16396,
+   195471
   ]
  ]
 }
