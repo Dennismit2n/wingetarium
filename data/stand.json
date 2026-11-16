@@ -1,9 +1,9 @@
 {
- "stand": "2026-11-15T11:26:35Z",
- "abgerufen": "2026-11-15T12:47:02Z",
- "pakete": 16396,
- "manifeste": 195471,
- "versionen": 70380,
+ "stand": "2026-11-16T12:39:27Z",
+ "abgerufen": "2026-11-16T13:41:45Z",
+ "pakete": 16397,
+ "manifeste": 195775,
+ "versionen": 70466,
  "kurznamen": 6016,
  "herausgeber": [
   [
@@ -38,7 +38,7 @@
   ],
   [
    "windows",
-   507
+   506
   ],
   [
    "web",
@@ -46,7 +46,7 @@
   ],
   [
    "cross-platform",
-   472
+   473
   ],
   [
    "browser",
@@ -58,7 +58,7 @@
   ],
   [
    "rust",
-   389
+   390
   ],
   [
    "video",
@@ -66,7 +66,7 @@
   ],
   [
    "audio",
-   372
+   371
   ],
   [
    "web-browser",
@@ -183,7 +183,7 @@
    "n": "PowerShell"
   },
   "JanDeDobbeleer.OhMyPosh": {
-   "v": "32.0.0",
+   "v": "32.1.0",
    "n": "Oh My Posh"
   },
   "Starship.Starship": {
@@ -554,6 +554,16 @@
  },
  "neu": [
   {
+   "d": "2026-11-16",
+   "p": [
+    [
+     "webKing021.Paperlight",
+     "Paperlight",
+     "1.2.3"
+    ]
+   ]
+  },
+  {
    "d": "2026-11-15",
    "p": [
     [
@@ -819,6 +829,11 @@
    "2026-11-15",
    16396,
    195471
+  ],
+  [
+   "2026-11-16",
+   16397,
+   195775
   ]
  ]
 }
