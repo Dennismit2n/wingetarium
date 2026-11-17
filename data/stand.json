@@ -1,10 +1,10 @@
 {
- "stand": "2026-11-16T12:39:27Z",
- "abgerufen": "2026-11-16T13:41:45Z",
- "pakete": 16397,
- "manifeste": 195775,
- "versionen": 70466,
- "kurznamen": 6016,
+ "stand": "2026-11-17T12:42:43Z",
+ "abgerufen": "2026-11-17T14:28:43Z",
+ "pakete": 16415,
+ "manifeste": 196338,
+ "versionen": 70612,
+ "kurznamen": 6038,
  "herausgeber": [
   [
    "Microsoft",
@@ -24,17 +24,17 @@
   ],
   [
    "KDE",
-   103
+   102
   ]
  ],
  "tags": [
   [
    "cli",
-   1017
+   1019
   ],
   [
    "ai",
-   780
+   782
   ],
   [
    "windows",
@@ -54,35 +54,35 @@
   ],
   [
    "llm",
-   445
+   444
   ],
   [
    "rust",
-   390
+   393
   ],
   [
    "video",
-   379
+   380
   ],
   [
    "audio",
    371
   ],
   [
+   "terminal",
+   357
+  ],
+  [
    "web-browser",
    356
   ],
   [
-   "terminal",
-   355
+   "editor",
+   354
   ],
   [
    "programming",
    354
-  ],
-  [
-   "editor",
-   353
   ],
   [
    "agent",
@@ -102,7 +102,7 @@
   ],
   [
    "developer-tools",
-   326
+   329
   ],
   [
    "electron",
@@ -243,7 +243,7 @@
    "n": "Podman"
   },
   "RedHat.Podman-Desktop": {
-   "v": "1.30.5",
+   "v": "1.30.7",
    "n": "Podman Desktop"
   },
   "Docker.DockerDesktop": {
@@ -287,7 +287,7 @@
    "n": "Everything"
   },
   "AntibodySoftware.WizTree": {
-   "v": "4.33",
+   "v": "4.34",
    "n": "WizTree"
   },
   "WinDirStat.WinDirStat": {
@@ -315,7 +315,7 @@
    "n": "mpv.net"
   },
   "PeterPawlowski.foobar2000": {
-   "v": "2.26.2",
+   "v": "2.26.3",
    "n": "foobar2000"
   },
   "TIDALMusicAS.TIDAL": {
@@ -395,7 +395,7 @@
    "n": "Ubisoft Connect"
   },
   "Discord.Discord": {
-   "v": "1.0.9268",
+   "v": "1.0.9269",
    "n": "Discord"
   },
   "Nvidia.GeForceNow": {
@@ -423,7 +423,7 @@
    "n": "TechPowerUp GPU-Z"
   },
   "CrystalDewWorld.CrystalDiskInfo": {
-   "v": "9.9.4",
+   "v": "9.9.5",
    "n": "CrystalDiskInfo"
   },
   "CrystalDewWorld.CrystalDiskMark": {
@@ -475,7 +475,7 @@
    "n": "MobaXterm"
   },
   "Postman.Postman": {
-   "v": "12.36.4",
+   "v": "12.37.0",
    "n": "Postman"
   },
   "Insomnia.Insomnia": {
@@ -515,7 +515,7 @@
    "n": "Joplin"
   },
   "Notion.Notion": {
-   "v": "7.43.2",
+   "v": "7.44.0",
    "n": "Notion"
   },
   "Qalculate.Qalculate": {
@@ -553,6 +553,141 @@
   "musicbee": false
  },
  "neu": [
+  {
+   "d": "2026-11-17",
+   "p": [
+    [
+     "AnshPatel.RecallOS",
+     "RecallOS",
+     "2.5.0"
+    ],
+    [
+     "AnyStorage.AnyStorage",
+     "AnyStorage",
+     "0.2.24"
+    ],
+    [
+     "dagaza.Qube.CUDA",
+     "Qube (CUDA)",
+     "1.3.53"
+    ],
+    [
+     "daisy-the-rabbit.SubExtractor",
+     "SubExtractor",
+     "2.0.1"
+    ],
+    [
+     "DewDB.DewDB",
+     "DewDB",
+     "1.1.0"
+    ],
+    [
+     "DominicLutz.BenchMeisterPCCheck",
+     "BenchMeister PC-Check",
+     "1.0.15"
+    ],
+    [
+     "EmoFa.tsuzuki",
+     "tsuzuki",
+     "0.4.0"
+    ],
+    [
+     "GaijinEntertainment.daslang",
+     "daslang",
+     "0.6.4"
+    ],
+    [
+     "GitRevenge.GitRevenge",
+     "Git Revenge",
+     "1.0.0"
+    ],
+    [
+     "Java-Mx.BitChat",
+     "BitChat RustPy",
+     "0.3.1"
+    ],
+    [
+     "karefined-eng.EleViewer",
+     "EleViewer",
+     "1.3.7"
+    ],
+    [
+     "Keskiyo.KesVio",
+     "KesVio",
+     "0.5.3"
+    ],
+    [
+     "Macronaut.Macronaut",
+     "Macronaut",
+     "2.3.6"
+    ],
+    [
+     "Martoto.PerfectWin11",
+     "Perfect Win11",
+     "0.1.0"
+    ],
+    [
+     "MattHartley.netwatch",
+     "netwatch",
+     "0.32.1"
+    ],
+    [
+     "NotHarshhaa.DevOpsToolsInstaller",
+     "DevOps Tools Installer",
+     "3.1.3"
+    ],
+    [
+     "NuclearMeltdown.qBlank",
+     "qBlank",
+     "7.2.2"
+    ],
+    [
+     "OmniDICOM.OmniDICOM",
+     "OmniDICOM",
+     "1.1.6"
+    ],
+    [
+     "PlummersSoftwareLLC.TMOG",
+     "Task Manager TMOG",
+     "1.0.0.0"
+    ],
+    [
+     "RigSmith.CodexRig",
+     "CodexRig",
+     "1.19.0"
+    ],
+    [
+     "SosomLab.NexaCoffee",
+     "Nexa Coffee",
+     "0.1.1"
+    ],
+    [
+     "soulvon.AnyBridge",
+     "AnyBridge",
+     "1.1.12"
+    ],
+    [
+     "Sumetio.Sumetio",
+     "Sumetio",
+     "1.8.0"
+    ],
+    [
+     "Tamakichi23.GeminiUsageMonitor",
+     "Gemini Usage Monitor",
+     "0.1.12"
+    ],
+    [
+     "xronocode.Mark",
+     "Mark",
+     "2.8.2"
+    ],
+    [
+     "Zubyr.Devpit",
+     "Devpit",
+     "0.1.0"
+    ]
+   ]
+  },
   {
    "d": "2026-11-16",
    "p": [
@@ -834,6 +969,11 @@
    "2026-11-16",
    16397,
    195775
+  ],
+  [
+   "2026-11-17",
+   16415,
+   196338
   ]
  ]
 }
