@@ -137,6 +137,11 @@
  "detailManifest": "Manifeste sur GitHub",
  "detailInstall": "Installer avec cette commande dans un terminal :",
  "detailCopy": "Copier",
+ "ueAn": "Descriptions en français",
+ "ueAus": "Afficher l’original",
+ "ueLaedt": "Chargement du pack de langue … {p} %",
+ "ueHinweis": "Traduction automatique, directement dans votre navigateur. Survolez le texte pour voir l’original.",
+ "ueFehler": "La traduction ne fonctionne pas dans ce navigateur pour le moment.",
  "cats": {
   "browser": "Navigateurs", "dev": "Développement", "shell": "Terminal et shell", "runtime": "Environnements et SDK",
   "container": "Conteneurs et VM", "vcs": "Gestion de versions", "files": "Fichiers et archives", "media": "Médias et audio",

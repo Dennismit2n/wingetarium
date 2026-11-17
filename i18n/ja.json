@@ -137,6 +137,11 @@
  "detailManifest": "GitHub のマニフェスト",
  "detailInstall": "ターミナルでこのコマンドを実行してインストール：",
  "detailCopy": "コピー",
+ "ueAn": "説明を日本語で表示",
+ "ueAus": "原文を表示",
+ "ueLaedt": "言語パックを読み込み中 … {p} %",
+ "ueHinweis": "ブラウザー内での機械翻訳です。マウスを重ねると原文が表示されます。",
+ "ueFehler": "このブラウザーでは現在翻訳できません。",
  "cats": {
   "browser": "ブラウザー", "dev": "開発", "shell": "ターミナルとシェル", "runtime": "ランタイムと SDK",
   "container": "コンテナーと VM", "vcs": "バージョン管理", "files": "ファイルとアーカイブ", "media": "メディアとオーディオ",

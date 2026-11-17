@@ -137,6 +137,11 @@
  "detailManifest": "GitHub 上的清单",
  "detailInstall": "在终端中用这条命令安装：",
  "detailCopy": "复制",
+ "ueAn": "用中文显示描述",
+ "ueAus": "显示原文",
+ "ueLaedt": "正在加载语言包 … {p} %",
+ "ueHinweis": "机器翻译，直接在你的浏览器中完成。将鼠标悬停可查看原文。",
+ "ueFehler": "此浏览器目前无法翻译。",
  "cats": {
   "browser": "浏览器", "dev": "开发", "shell": "终端与 Shell", "runtime": "运行时与 SDK",
   "container": "容器与虚拟机", "vcs": "版本控制", "files": "文件与压缩", "media": "媒体与音频",

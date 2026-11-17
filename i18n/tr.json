@@ -137,6 +137,11 @@
  "detailManifest": "GitHub’da manifest",
  "detailInstall": "Terminalde bu komutla yükleyin:",
  "detailCopy": "Kopyala",
+ "ueAn": "Açıklamalar Türkçe",
+ "ueAus": "Orijinali göster",
+ "ueLaedt": "Dil paketi yükleniyor … %{p}",
+ "ueHinweis": "Makine çevirisi, doğrudan tarayıcınızda. Orijinali görmek için fareyle üzerine gelin.",
+ "ueFehler": "Çeviri bu tarayıcıda şu anda çalışmıyor.",
  "cats": {
   "browser": "Tarayıcı", "dev": "Geliştirme", "shell": "Terminal & kabuk", "runtime": "Çalışma ortamları & SDK’lar",
   "container": "Konteyner & sanal makine", "vcs": "Sürüm kontrolü", "files": "Dosyalar & arşivler", "media": "Medya & ses",

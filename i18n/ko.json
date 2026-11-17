@@ -137,6 +137,11 @@
  "detailManifest": "GitHub의 매니페스트",
  "detailInstall": "터미널에서 이 명령어로 설치하세요:",
  "detailCopy": "복사",
+ "ueAn": "설명을 한국어로",
+ "ueAus": "원문 보기",
+ "ueLaedt": "언어 팩 불러오는 중 … {p} %",
+ "ueHinweis": "브라우저에서 바로 한 기계 번역이에요. 마우스를 올리면 원문이 보여요.",
+ "ueFehler": "이 브라우저에서는 지금 번역할 수 없어요.",
  "cats": {
   "browser": "브라우저", "dev": "개발", "shell": "터미널과 셸", "runtime": "런타임과 SDK",
   "container": "컨테이너와 VM", "vcs": "버전 관리", "files": "파일과 압축", "media": "미디어와 오디오",

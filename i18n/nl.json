@@ -137,6 +137,11 @@
  "detailManifest": "Manifest op GitHub",
  "detailInstall": "Installeren met deze opdracht in een terminal:",
  "detailCopy": "Kopiëren",
+ "ueAn": "Beschrijvingen in het Nederlands",
+ "ueAus": "Origineel tonen",
+ "ueLaedt": "Taalpakket laden … {p} %",
+ "ueHinweis": "Automatisch vertaald, direct in je browser. Beweeg met de muis erover om het origineel te zien.",
+ "ueFehler": "Vertalen werkt op dit moment niet in deze browser.",
  "cats": {
   "browser": "Browsers", "dev": "Ontwikkeling", "shell": "Terminal en shell", "runtime": "Runtimes en SDK’s",
   "container": "Containers en VM’s", "vcs": "Versiebeheer", "files": "Bestanden en archieven", "media": "Media en audio",

@@ -245,16 +245,18 @@ function zeichneAlle() {
   ueKarten();
 }
 
-/* Übersetzen direkt im Browser (Translator-API von Chrome und Edge am PC, läuft auf dem Gerät).
-   Vorerst nur für Deutsch. Andere Browser und Sprachen sehen den Originaltext wie bisher. */
-const UE = { an: false, hin: null, her: null, cache: new Map(), suche: {}, lauf: 0, status: '' };
+/* Übersetzen direkt im Browser (Translator-API von Chrome und Edge am PC, läuft auf dem Gerät)
+   in die eingestellte Sprache. Ohne die Schnittstelle oder bei Englisch bleibt der Originaltext. */
+const UE = { an: false, lang: '', hin: null, her: null, cache: new Map(), suche: {}, lauf: 0, status: '' };
 const NICHT_EN = /[Ѐ-ӿऀ-ॿ぀-ヿ㐀-鿿가-힯]/;
-function ueMoeglich() { return S.lang === 'de' && typeof self.Translator !== 'undefined'; }
+function ueMoeglich() { return S.lang !== 'en' && typeof self.Translator !== 'undefined'; }
 async function ueVorbereiten() {
   const b = $('ue');
+  // Neue Sprache: Übersetzer und Zwischenspeicher gehören zur alten.
+  if (UE.lang !== S.lang) Object.assign(UE, { an: false, lang: S.lang, hin: null, her: null, cache: new Map(), suche: {}, status: '' });
   if (!ueMoeglich()) { UE.an = false; b.hidden = true; return; }
   // Manche Chromium-Ableger kennen die Schnittstelle, antworten aber nie: nach 5 s gilt sie als nicht da.
-  try { UE.status = await Promise.race([Translator.availability({ sourceLanguage: 'en', targetLanguage: 'de' }), new Promise(r => setTimeout(() => r('unavailable'), 5000))]); } catch (e) { UE.status = 'unavailable'; }
+  try { UE.status = await Promise.race([Translator.availability({ sourceLanguage: 'en', targetLanguage: S.lang }), new Promise(r => setTimeout(() => r('unavailable'), 5000))]); } catch (e) { UE.status = 'unavailable'; }
   if (UE.status === 'unavailable') { b.hidden = true; return; }
   // Schon geladen und früher eingeschaltet: ohne Klick wieder an.
   if (UE.status === 'available' && laden('wingetarium.uebersetzen') === '1' && !UE.an) await ueStarten();
@@ -272,15 +274,15 @@ async function ueStarten() {
     const monitor = m => m.addEventListener('downloadprogress', e => { b.textContent = fmt(t.ueLaedt, { p: Math.round(e.loaded * 100) }); });
     // Beide Richtungen im selben Klick anlegen, das Laden des Sprachpakets braucht eine Nutzeraktion.
     [UE.hin, UE.her] = await Promise.all([
-      UE.hin || Translator.create({ sourceLanguage: 'en', targetLanguage: 'de', monitor }),
-      UE.her || Translator.create({ sourceLanguage: 'de', targetLanguage: 'en' })
+      UE.hin || Translator.create({ sourceLanguage: 'en', targetLanguage: S.lang, monitor }),
+      UE.her || Translator.create({ sourceLanguage: S.lang, targetLanguage: 'en' })
     ]);
     UE.an = true; UE.status = 'available';
     speichern('wingetarium.uebersetzen', '1');
   } catch (e) { UE.an = false; toast(t.ueFehler); }
   ueKnopf();
 }
-async function aufDeutsch(text) {
+async function uebersetze(text) {
   if (!UE.an || !text || NICHT_EN.test(text)) return null;
   if (UE.cache.has(text)) return UE.cache.get(text);
   try { const d = await UE.hin.translate(text); UE.cache.set(text, d); return d; } catch (e) { return null; }
@@ -289,7 +291,7 @@ async function ueKarten() {
   if (!UE.an) return;
   const lauf = ++UE.lauf;
   for (const el of document.querySelectorAll('#rows-a .p-kurz')) {
-    const d = await aufDeutsch(el.textContent);
+    const d = await uebersetze(el.textContent);
     if (lauf !== UE.lauf || !UE.an) return;
     if (d) { el.title = el.textContent; el.textContent = d; }
   }
@@ -306,7 +308,7 @@ async function ueSteckbrief(id) {
     const orig = el.textContent;
     if (el.hidden || !orig || orig === T().detailLoading) continue;
     // Absatzweise, damit die Absätze erhalten bleiben.
-    const teile = await Promise.all(orig.split('\n').map(z => z.trim() ? aufDeutsch(z) : z));
+    const teile = await Promise.all(orig.split('\n').map(z => z.trim() ? uebersetze(z) : z));
     if (S.sb !== id) return;
     if (teile.some(Boolean)) { el.textContent = teile.map((d, i) => d || orig.split('\n')[i]).join('\n'); el.title = orig; geaendert = true; }
   }

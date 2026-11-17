@@ -137,6 +137,11 @@
  "detailManifest": "Manifesto no GitHub",
  "detailInstall": "Instale com este comando no terminal:",
  "detailCopy": "Copiar",
+ "ueAn": "Descrições em português",
+ "ueAus": "Mostrar original",
+ "ueLaedt": "A carregar pacote de idioma … {p} %",
+ "ueHinweis": "Tradução automática, diretamente no seu navegador. Passe o rato por cima para ver o original.",
+ "ueFehler": "A tradução não funciona neste navegador de momento.",
  "cats": {
   "browser": "Navegadores", "dev": "Desenvolvimento", "shell": "Terminal e shell", "runtime": "Runtimes e SDKs",
   "container": "Contêineres e VMs", "vcs": "Controle de versão", "files": "Arquivos e compactação", "media": "Mídia e áudio",

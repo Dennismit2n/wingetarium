@@ -137,6 +137,11 @@
  "detailManifest": "Manifest na GitHubie",
  "detailInstall": "Zainstaluj tym poleceniem w terminalu:",
  "detailCopy": "Kopiuj",
+ "ueAn": "Opisy po polsku",
+ "ueAus": "Pokaż oryginał",
+ "ueLaedt": "Ładowanie pakietu językowego … {p} %",
+ "ueHinweis": "Tłumaczenie maszynowe, bezpośrednio w twojej przeglądarce. Najedź myszą, aby zobaczyć oryginał.",
+ "ueFehler": "Tłumaczenie nie działa teraz w tej przeglądarce.",
  "cats": {
   "browser": "Przeglądarki", "dev": "Programowanie", "shell": "Terminal i powłoka", "runtime": "Środowiska i SDK",
   "container": "Kontenery i VM", "vcs": "Kontrola wersji", "files": "Pliki i archiwa", "media": "Multimedia i audio",
