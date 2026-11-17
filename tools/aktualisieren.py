@@ -154,11 +154,17 @@ def auswerten(con):
     alt_stand = {}
     if (DATEN / "stand.json").exists():
         alt_stand = json.loads((DATEN / "stand.json").read_text(encoding="utf8"))
+    # Laeuft das Skript am selben Tag noch einmal, wird die Liste von heute ergaenzt, nicht ersetzt.
+    heute_alt = next((t["p"] for t in alt_stand.get("neu", []) if t["d"] == heute), [])
     neu_liste = [t for t in alt_stand.get("neu", []) if t["d"] != heute]
     if alte_ids:
         dazu = sorted(set(neueste) - alte_ids, key=str.lower)
-        if dazu and len(dazu) <= NEU_MAX_JE_TAG:
-            neu_liste.insert(0, {"d": heute, "p": [[p, neueste[p][1], neueste[p][3]] for p in dazu]})
+        if len(dazu) > NEU_MAX_JE_TAG:
+            dazu = []
+        bekannt = {z[0] for z in heute_alt}
+        liste = heute_alt + [[p, neueste[p][1], neueste[p][3]] for p in dazu if p not in bekannt]
+        if liste:
+            neu_liste.insert(0, {"d": heute, "p": sorted(liste, key=lambda z: z[0].lower())})
     grenze = (dt.date.fromisoformat(heute) - dt.timedelta(days=NEU_TAGE)).isoformat()
     neu_liste = [t for t in neu_liste if t["d"] > grenze]
 
