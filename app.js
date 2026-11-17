@@ -103,6 +103,7 @@ async function setzeSprache(l, merken) {
   $('q').placeholder = T().searchCatalog; $('q').setAttribute('aria-label', T().searchCatalogLabel);
   $('qa').setAttribute('aria-label', T().searchAllLabel);
   zeichneAlles();
+  ueVorbereiten().then(() => { if (UE.an) zeichneAlle(); });
 }
 
 /* ---------- Inhalte ---------- */
@@ -229,8 +230,11 @@ function zeichneAlle() {
     return;
   }
   const teile = q.length >= 2 ? q.split(/\s+/) : [];
+  // Mit Übersetzer zählt auch die englische Fassung der Suche: „passwort“ findet dann „password“.
+  const en = UE.an && UE.suche[q] ? UE.suche[q].split(/\s+/).filter(Boolean) : [];
+  const passt = (e, ws) => ws.length > 0 && ws.every(w => e.s.includes(w));
   const fset = f ? new Set(f.typ === 'thema' ? THEMEN[f.key] : [f.key]) : null;
-  const r = S.index.filter(e => (!fset || e.tags.some(x => fset.has(x))) && teile.every(w => e.s.includes(w)));
+  const r = S.index.filter(e => (!fset || e.tags.some(x => fset.has(x))) && (!teile.length || passt(e, teile) || passt(e, en)));
   // Rang: genauer Name oder Kurzname, dann Treffer im Namen, dann in Schlagworten, dann nur in der Beschreibung. Auswahl zuerst.
   const rang = e => !q ? 0 : (e.z[1].toLowerCase() === q || e.z[3] === q || e.z[0].toLowerCase() === q) ? 0 : teile.every(w => e.n.includes(w)) ? 1 : teile.every(w => e.tags.some(x => x.includes(w)) || e.n.includes(w)) ? 2 : 3;
   r.forEach(e => { e.r = rang(e); });
@@ -238,7 +242,77 @@ function zeichneAlle() {
   $('rows-a').innerHTML = r.slice(0, MAX).map(({ z }) => '<li><button class="paket" type="button" data-id="' + esc(z[0]) + '"><span class="p-kopf"><span class="p-name">' + esc(z[1]) + '</span><span class="p-ver">' + esc(z[2]) + '</span></span><span class="p-id">' + esc(z[0]) + '</span>' + (z[4] ? '<span class="p-kurz">' + esc(z[4]) + '</span>' : '') + '</button></li>').join('');
   $('count-a').textContent = fmt(t.countOf, { n: zahl(r.length), m: zahl(S.index.length) });
   $('empty-a').textContent = !r.length ? t.empty : (r.length > MAX ? fmt(t.searchAllMore, { n: MAX, m: zahl(r.length) }) : '');
+  ueKarten();
 }
+
+/* Übersetzen direkt im Browser (Translator-API von Chrome und Edge am PC, läuft auf dem Gerät).
+   Vorerst nur für Deutsch. Andere Browser und Sprachen sehen den Originaltext wie bisher. */
+const UE = { an: false, hin: null, her: null, cache: new Map(), suche: {}, lauf: 0, status: '' };
+const NICHT_EN = /[Ѐ-ӿऀ-ॿ぀-ヿ㐀-鿿가-힯]/;
+function ueMoeglich() { return S.lang === 'de' && typeof self.Translator !== 'undefined'; }
+async function ueVorbereiten() {
+  const b = $('ue');
+  if (!ueMoeglich()) { UE.an = false; b.hidden = true; return; }
+  // Manche Chromium-Ableger kennen die Schnittstelle, antworten aber nie: nach 5 s gilt sie als nicht da.
+  try { UE.status = await Promise.race([Translator.availability({ sourceLanguage: 'en', targetLanguage: 'de' }), new Promise(r => setTimeout(() => r('unavailable'), 5000))]); } catch (e) { UE.status = 'unavailable'; }
+  if (UE.status === 'unavailable') { b.hidden = true; return; }
+  // Schon geladen und früher eingeschaltet: ohne Klick wieder an.
+  if (UE.status === 'available' && laden('wingetarium.uebersetzen') === '1' && !UE.an) await ueStarten();
+  ueKnopf();
+}
+function ueKnopf() {
+  const b = $('ue'), t = T();
+  b.hidden = !ueMoeglich() || UE.status === 'unavailable';
+  b.textContent = UE.an ? t.ueAus : t.ueAn;
+  b.setAttribute('aria-pressed', String(UE.an));
+}
+async function ueStarten() {
+  const t = T(), b = $('ue');
+  try {
+    const monitor = m => m.addEventListener('downloadprogress', e => { b.textContent = fmt(t.ueLaedt, { p: Math.round(e.loaded * 100) }); });
+    // Beide Richtungen im selben Klick anlegen, das Laden des Sprachpakets braucht eine Nutzeraktion.
+    [UE.hin, UE.her] = await Promise.all([
+      UE.hin || Translator.create({ sourceLanguage: 'en', targetLanguage: 'de', monitor }),
+      UE.her || Translator.create({ sourceLanguage: 'de', targetLanguage: 'en' })
+    ]);
+    UE.an = true; UE.status = 'available';
+    speichern('wingetarium.uebersetzen', '1');
+  } catch (e) { UE.an = false; toast(t.ueFehler); }
+  ueKnopf();
+}
+async function aufDeutsch(text) {
+  if (!UE.an || !text || NICHT_EN.test(text)) return null;
+  if (UE.cache.has(text)) return UE.cache.get(text);
+  try { const d = await UE.hin.translate(text); UE.cache.set(text, d); return d; } catch (e) { return null; }
+}
+async function ueKarten() {
+  if (!UE.an) return;
+  const lauf = ++UE.lauf;
+  for (const el of document.querySelectorAll('#rows-a .p-kurz')) {
+    const d = await aufDeutsch(el.textContent);
+    if (lauf !== UE.lauf || !UE.an) return;
+    if (d) { el.title = el.textContent; el.textContent = d; }
+  }
+}
+async function ueSuche(q) {
+  if (!UE.an || q.length < 2 || q in UE.suche) return;
+  try { UE.suche[q] = (await UE.her.translate(q)).toLowerCase().replace(/[^\p{L}\p{N}\s.+#-]/gu, ' '); } catch (e) { UE.suche[q] = ''; }
+  if (S.qa.trim().toLowerCase() === q) zeichneAlle();
+}
+async function ueSteckbrief(id) {
+  if (!UE.an || S.sb !== id) return;
+  let geaendert = false;
+  for (const el of [$('sb-kurz'), $('sb-lang')]) {
+    const orig = el.textContent;
+    if (el.hidden || !orig || orig === T().detailLoading) continue;
+    // Absatzweise, damit die Absätze erhalten bleiben.
+    const teile = await Promise.all(orig.split('\n').map(z => z.trim() ? aufDeutsch(z) : z));
+    if (S.sb !== id) return;
+    if (teile.some(Boolean)) { el.textContent = teile.map((d, i) => d || orig.split('\n')[i]).join('\n'); el.title = orig; geaendert = true; }
+  }
+  $('sb-ue').hidden = !geaendert;
+}
+
 function setzeFilter(f) {
   S.fa = f; S.qa = ''; $('qa').value = '';
   if (S.tab !== 'a') zeigeTab('a');
@@ -283,11 +357,13 @@ async function zeigeSteckbrief(id) {
       '<a href="' + esc(manifestUrl(id, v)) + '" target="_blank" rel="noopener noreferrer">' + esc(t.detailManifest) + '</a>';
     $('sb-cmd').textContent = installBefehl(id);
   };
+  $('sb-ue').hidden = true;
   fuellen(S.indexId && S.indexId.get(id), undefined);
   if (!dlg.open) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }
   dlg.scrollTop = 0;
   const [, x] = await Promise.all([holeIndex(), holeTexte(id)]);
   fuellen(S.indexId && S.indexId.get(id), x);
+  ueSteckbrief(id);
 }
 function schliesseSteckbrief() { const d = $('steckbrief'); S.sb = null; if (d.close) d.close(); else d.removeAttribute('open'); }
 
@@ -382,7 +458,12 @@ document.querySelector('table.auswahl thead').addEventListener('click', e => { c
 document.querySelector('table.auswahl thead').addEventListener('keydown', e => { const th = e.target.closest('th'); if (th && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); sortiere(th); } });
 $('q').addEventListener('input', e => { S.q = e.target.value; zeichneTabelle(); });
 let qaT = 0;
-$('qa').addEventListener('input', e => { S.qa = e.target.value; clearTimeout(qaT); qaT = setTimeout(zeichneAlle, 120); });
+$('qa').addEventListener('input', e => { S.qa = e.target.value; clearTimeout(qaT); qaT = setTimeout(() => { zeichneAlle(); ueSuche(S.qa.trim().toLowerCase()); }, 120); });
+$('ue').addEventListener('click', async () => {
+  if (UE.an) { UE.an = false; UE.lauf++; speichern('wingetarium.uebersetzen', '0'); ueKnopf(); }
+  else await ueStarten();
+  zeichneAlle(); ueSuche(S.qa.trim().toLowerCase());
+});
 $('sprache').addEventListener('change', e => setzeSprache(e.target.value, true));
 $('darstellung').addEventListener('change', e => setzeDarstellung(e.target.value, true));
 matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => setzeDarstellung($('darstellung').value, false));

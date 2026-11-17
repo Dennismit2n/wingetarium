@@ -14,7 +14,7 @@
 |---|---|
 | **Überblick** | Paketzahl, Manifeste, Versionen und Kurznamen aus dem Index von heute, die 20 häufigsten Schlagworte und eine Kurve, die jeden Morgen um einen Punkt wächst. |
 | **Auswahl** | 108 Pakete in 15 Kategorien mit der Version von heute, den Kosten und wofür sie gut sind. Nach jeder Spalte sortieren, nach Kategorie filtern, suchen. Ein Klick auf die ID öffnet den Steckbrief. |
-| **Alle Pakete** | Den kompletten Index (über 16.000 Pakete) nach Name, ID, Beschreibung oder Schlagwort durchsuchen, direkt im Browser. Wer nicht weiß, wonach er suchen soll, stöbert in 16 Themen oder den häufigsten Schlagworten. Ein Klick auf ein Paket öffnet den Steckbrief: was es ist, was es kann, Herausgeber, Lizenz, Webseite und `winget install --id … -e` zum Kopieren. |
+| **Alle Pakete** | Den kompletten Index (über 16.000 Pakete) nach Name, ID, Beschreibung oder Schlagwort durchsuchen, direkt im Browser. Wer nicht weiß, wonach er suchen soll, stöbert in 16 Themen oder den häufigsten Schlagworten. Ein Klick auf ein Paket öffnet den Steckbrief: was es ist, was es kann, Herausgeber, Lizenz, Webseite und `winget install --id … -e` zum Kopieren. Mit Chrome oder Edge am PC übersetzt der Knopf „Beschreibungen auf Deutsch“ die Texte direkt im Browser, dann findet die Suche auch „Passwort“. |
 | **Neu** | Jedes Paket, das seit dem Vortag dazugekommen ist, für die letzten 30 Tage. |
 | **Befehle** | Die winget-Befehle, die man wirklich braucht, vom Finden bis zum Umzug auf einen neuen PC. Ein Klick kopiert. |
 | **Grenzen** | Was winget nicht kann (Grafiktreiber, Spielebibliotheken, Schriften, Updates nach Zeitplan …), mit Zahlen aus dem Index von heute. |

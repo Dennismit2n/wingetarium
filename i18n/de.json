@@ -137,6 +137,11 @@
  "detailManifest": "Manifest auf GitHub",
  "detailInstall": "Installieren mit diesem Befehl im Terminal:",
  "detailCopy": "Kopieren",
+ "ueAn": "Beschreibungen auf Deutsch",
+ "ueAus": "Original anzeigen",
+ "ueLaedt": "Sprachpaket lädt … {p} %",
+ "ueHinweis": "Maschinell übersetzt, direkt in deinem Browser. Das Original steht im Tooltip.",
+ "ueFehler": "Übersetzen klappt in diesem Browser gerade nicht.",
  "cats": {
   "browser": "Browser", "dev": "Entwicklung", "shell": "Terminal & Shell", "runtime": "Laufzeiten & SDKs",
   "container": "Container & VM", "vcs": "Versionsverwaltung", "files": "Dateien & Archive", "media": "Medien & Audio",

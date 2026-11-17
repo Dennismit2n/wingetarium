@@ -6,11 +6,11 @@
 'use strict';
 
 // Bei jedem Deploy, der index.html, style.css, app.js oder die Sprachdateien ändert, um 1 erhöhen.
-const CACHE = 'wingetarium-v2';
+const CACHE = 'wingetarium-v3';
 const DATEN = 'wingetarium-daten';
 const SPRACHEN = ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'tr', 'ru', 'hi', 'zh', 'ja', 'ko'];
 const SHELL = [
-  './', './index.html', './style.css?v=2026-11-17', './app.js?v=2026-11-17', './fonts/plex.css?v=2026-11-12b',
+  './', './index.html', './style.css?v=2026-11-17', './app.js?v=2026-11-18', './fonts/plex.css?v=2026-11-12b',
   './manifest.webmanifest', './favicon.svg', './icon-192.png', './icon-512.png', './icon-maskable.png',
   ...SPRACHEN.map(l => './i18n/' + l + '.json')
 ];
