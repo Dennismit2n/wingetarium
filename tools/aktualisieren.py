@@ -6,8 +6,13 @@ Optional:  python tools/aktualisieren.py --msix pfad/zu/source.msix  (ohne Downl
 
 Schreibt:
   data/stand.json   Zahlen, Schlagworte, Versionen der Auswahl, Neu im Repo, Verlauf
-  data/index.json   alle Pakete (ID, Name, Version, Kurzname) fuer die Suche
+  data/index.json   alle Pakete (ID, Name, Version, Kurzname, Kurzbeschreibung, Schlagworte) fuer die Suche
+  data/text/<x>.json  Herausgeber, Lizenz, Webseite, Beschreibung je Paket, nach erstem Zeichen der ID geteilt
+
+Die Beschreibungen stehen nicht im Index, sondern in den Manifesten auf dem CDN. Geholt wird nur,
+was sich seit gestern geaendert hat (Kennung: Hash des Manifests). Braucht PyYAML.
 """
+import concurrent.futures as cf
 import datetime as dt
 import io
 import json
@@ -15,12 +20,19 @@ import re
 import sqlite3
 import sys
 import tempfile
+import urllib.parse
 import urllib.request
 import zipfile
 from collections import Counter
 from pathlib import Path
 
+import yaml
+
 QUELLE = "https://cdn.winget.microsoft.com/cache/source.msix"
+CDN = "https://cdn.winget.microsoft.com/cache/"
+TEXT = "text"          # Unterordner von data/ fuer die Beschreibungen
+BESCHR_MAX = 1500      # laengere Beschreibungen werden gekuerzt
+TAGS_MAX = 10          # so viele Schlagworte je Paket in index.json
 WURZEL = Path(__file__).resolve().parent.parent
 DATEN = WURZEL / "data"
 NEU_TAGE = 30          # so viele Tage bleibt "Neu im Repo" sichtbar
@@ -71,7 +83,7 @@ def auswerten(con):
     heute = dt.datetime.now(dt.timezone.utc).date().isoformat()
 
     zeilen = con.execute(
-        """select m.rowid, i.id, n.name, mo.moniker, v.version
+        """select m.rowid, i.id, n.name, mo.moniker, v.version, m.pathpart, m.hash
            from manifest m
            join ids i on i.rowid = m.id
            join names n on n.rowid = m.name
@@ -79,21 +91,27 @@ def auswerten(con):
            join versions v on v.rowid = m.version"""
     ).fetchall()
 
-    neueste = {}  # id -> (schluessel, name, moniker, version, manifest)
-    for rowid, pid, name, mon, ver in zeilen:
+    neueste = {}  # id -> (schluessel, name, moniker, version, manifest, pfadteil, hash)
+    for rowid, pid, name, mon, ver, pfad, hsh in zeilen:
         k = versions_schluessel(ver)
         alt = neueste.get(pid)
         if alt is None or k > alt[0]:
-            neueste[pid] = (k, name, mon, ver, rowid)
+            neueste[pid] = (k, name, mon, ver, rowid, pfad, (hsh or b"").hex()[:12])
 
     manifest_zu_id = {rowid: pid for rowid, pid, *_ in zeilen}
+    neuestes_manifest = {w[4]: pid for pid, w in neueste.items()}
 
     # Schlagworte: je Paket einmal zaehlen (ueber alle Versionen)
     tag_je_paket = {}
+    tags_neueste = {}  # id -> Schlagworte der neuesten Version
     for man, tag in con.execute(
         "select tm.manifest, t.tag from tags_map tm join tags t on t.rowid = tm.tag"
     ):
         tag_je_paket.setdefault(tag.lower(), set()).add(manifest_zu_id.get(man))
+        if man in neuestes_manifest:
+            liste = tags_neueste.setdefault(neuestes_manifest[man], [])
+            if tag.lower() not in liste:
+                liste.append(tag.lower())
     tags = Counter({t: len(p - {None}) for t, p in tag_je_paket.items()})
     oben = [
         [t, n] for t, n in tags.most_common(200)
@@ -163,26 +181,104 @@ def auswerten(con):
         "neu": neu_liste,
         "verlauf": verlauf,
     }
+    texte = beschreibungen(con, neueste)
     index_json = {
         "stand": stand_json["stand"],
         "p": sorted(
-            ([pid, w[1], w[3], w[2]] for pid, w in neueste.items()),
+            ([pid, w[1], w[3], w[2], texte.get(pid, [""] * 2)[1],
+              " ".join(sorted(tags_neueste.get(pid, []), key=lambda t: -tags[t])[:TAGS_MAX])]
+             for pid, w in neueste.items()),
             key=lambda z: z[0].lower(),
         ),
     }
     schreiben(DATEN / "stand.json", stand_json)
     schreiben(DATEN / "index.json", index_json, kompakt=True)
+    texte_schreiben(texte)
     print(f"Stand {stand_json['stand']}: {len(neueste)} Pakete, "
           f"{len(zeilen)} Manifeste, neu heute: "
           f"{len(neu_liste[0]['p']) if neu_liste and neu_liste[0]['d'] == heute else 0}, "
           f"fehlt in Auswahl: {fehlt or 'nichts'}")
 
 
+def teil(pid: str) -> str:
+    """Name der Teildatei unter data/text/ fuer eine Paket-ID."""
+    c = pid[:1].lower()
+    return c if c.isascii() and c.isalnum() else "_"
+
+
+def beschreibungen(con, neueste):
+    """id -> [hash, kurz, herausgeber, lizenz, webseite, beschreibung]; holt nur Geaendertes vom CDN."""
+    alt = {}
+    for f in (DATEN / TEXT).glob("*.json"):
+        alt.update(json.loads(f.read_text(encoding="utf8")))
+    teile = {r: (p, t) for r, p, t in con.execute("select rowid, parent, pathpart from pathparts")}
+
+    def pfad(r):
+        out = []
+        while r:
+            r, t = teile[r]
+            out.append(t)
+        return "/".join(reversed(out))
+
+    texte, holen = {}, []
+    for pid, w in neueste.items():
+        a = alt.get(pid)
+        if a and a[0] == w[6]:
+            texte[pid] = a
+        else:
+            holen.append(pid)
+
+    def eins(pid):
+        url = CDN + urllib.parse.quote(pfad(neueste[pid][5]))
+        req = urllib.request.Request(url, headers={"User-Agent": "wingetarium-bot"})
+        for _ in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    return pid, yaml.load(r.read(), Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
+            except Exception:
+                pass
+        return pid, None
+
+    def s(v):
+        return " ".join(str(v).split()) if v else ""
+
+    fehler = 0
+    with cf.ThreadPoolExecutor(24) as ex:
+        for pid, m in ex.map(eins, holen):
+            if not isinstance(m, dict):
+                fehler += 1
+                if pid in alt:
+                    texte[pid] = alt[pid]  # alter Text ist besser als keiner; Hash bleibt alt, morgen neuer Versuch
+                continue
+            lang = (m.get("Description") or "").strip()
+            if len(lang) > BESCHR_MAX:
+                lang = lang[:BESCHR_MAX].rsplit(" ", 1)[0] + " …"
+            texte[pid] = [neueste[pid][6], s(m.get("ShortDescription")), s(m.get("Publisher")),
+                          s(m.get("License")), s(m.get("PackageUrl") or m.get("PublisherUrl")), lang]
+    print(f"Beschreibungen: {len(holen) - fehler} neu geholt, {fehler} Fehler, {len(texte)} gesamt")
+    return texte
+
+
+def texte_schreiben(texte):
+    ordner = DATEN / TEXT
+    ordner.mkdir(exist_ok=True)
+    gruppen = {}
+    for pid in sorted(texte, key=str.lower):
+        gruppen.setdefault(teil(pid), {})[pid] = texte[pid]
+    for f in ordner.glob("*.json"):
+        if f.stem not in gruppen:
+            f.unlink()
+    for name, inhalt in gruppen.items():
+        d = lambda x: json.dumps(x, ensure_ascii=False, separators=(",", ":"))
+        text = "{\n" + ",\n".join(d(k) + ":" + d(v) for k, v in inhalt.items()) + "\n}"
+        (ordner / f"{name}.json").write_text(text + "\n", encoding="utf8", newline="\n")
+
+
 def schreiben(pfad: Path, daten, kompakt=False):
     if kompakt:
-        text = json.dumps(daten, ensure_ascii=False, separators=(",", ":"))
-        # eine Zeile je Paket, damit Git-Diffs lesbar bleiben
-        text = text.replace('],["', '],\n["')
+        # eine Zeile je Paket, damit Git-Diffs lesbar bleiben (Texte koennen selbst '],["' enthalten)
+        d = lambda x: json.dumps(x, ensure_ascii=False, separators=(",", ":"))
+        text = '{"stand":' + d(daten["stand"]) + ',"p":[' + ",\n".join(d(z) for z in daten["p"]) + "]}"
     else:
         text = json.dumps(daten, ensure_ascii=False, indent=1)
     pfad.write_text(text + "\n", encoding="utf8", newline="\n")

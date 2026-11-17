@@ -1,10 +1,10 @@
 {
- "stand": "2026-11-17T12:42:43Z",
- "abgerufen": "2026-11-17T14:28:43Z",
- "pakete": 16415,
- "manifeste": 196338,
- "versionen": 70612,
- "kurznamen": 6038,
+ "stand": "2026-11-17T21:20:18Z",
+ "abgerufen": "2026-11-17T22:59:51Z",
+ "pakete": 16421,
+ "manifeste": 196517,
+ "versionen": 70667,
+ "kurznamen": 6042,
  "herausgeber": [
   [
    "Microsoft",
@@ -30,11 +30,11 @@
  "tags": [
   [
    "cli",
-   1019
+   1021
   ],
   [
    "ai",
-   782
+   783
   ],
   [
    "windows",
@@ -70,7 +70,7 @@
   ],
   [
    "terminal",
-   357
+   358
   ],
   [
    "web-browser",
@@ -86,7 +86,7 @@
   ],
   [
    "agent",
-   340
+   341
   ],
   [
    "foss",
@@ -183,7 +183,7 @@
    "n": "PowerShell"
   },
   "JanDeDobbeleer.OhMyPosh": {
-   "v": "32.1.0",
+   "v": "33.0.0",
    "n": "Oh My Posh"
   },
   "Starship.Starship": {
@@ -399,7 +399,7 @@
    "n": "Discord"
   },
   "Nvidia.GeForceNow": {
-   "v": "2.0.90.126",
+   "v": "2.0.90.138",
    "n": "NVIDIA GeForce NOW"
   },
   "Orbmu2k.nvidiaProfileInspector": {
@@ -451,7 +451,7 @@
    "n": "Revo Uninstaller"
   },
   "Rufus.Rufus": {
-   "v": "4.15",
+   "v": "4.16",
    "n": "Rufus"
   },
   "Balena.Etcher": {
@@ -475,7 +475,7 @@
    "n": "MobaXterm"
   },
   "Postman.Postman": {
-   "v": "12.37.0",
+   "v": "12.37.1",
    "n": "Postman"
   },
   "Insomnia.Insomnia": {
@@ -535,7 +535,7 @@
    "n": "Zoom Workplace"
   },
   "Anthropic.Claude": {
-   "v": "3.6556.2",
+   "v": "4.29.0",
    "n": "Claude"
   },
   "Anthropic.ClaudeCode": {
@@ -556,6 +556,11 @@
   {
    "d": "2026-11-17",
    "p": [
+    [
+     "1broseidon.ketch",
+     "ketch",
+     "0.20.1"
+    ],
     [
      "AnshPatel.RecallOS",
      "RecallOS",
@@ -617,9 +622,19 @@
      "0.5.3"
     ],
     [
+     "KingDasWinx.Dexo",
+     "Dexo",
+     "1.2.0"
+    ],
+    [
      "Macronaut.Macronaut",
      "Macronaut",
      "2.3.6"
+    ],
+    [
+     "MarcusBoni.ISPer",
+     "ISPer",
+     "0.20.0"
     ],
     [
      "Martoto.PerfectWin11",
@@ -642,6 +657,11 @@
      "7.2.2"
     ],
     [
+     "OlimoffDev.StereoKeeper",
+     "StereoKeeper",
+     "3.0.0.0"
+    ],
+    [
      "OmniDICOM.OmniDICOM",
      "OmniDICOM",
      "1.1.6"
@@ -650,6 +670,11 @@
      "PlummersSoftwareLLC.TMOG",
      "Task Manager TMOG",
      "1.0.0.0"
+    ],
+    [
+     "RatomirJovanovic.PandaWard",
+     "PandaWard",
+     "0.2.17"
     ],
     [
      "RigSmith.CodexRig",
@@ -675,6 +700,11 @@
      "Tamakichi23.GeminiUsageMonitor",
      "Gemini Usage Monitor",
      "0.1.12"
+    ],
+    [
+     "WhoIsMars.LinerFM",
+     "LinerFM",
+     "1.7.0"
     ],
     [
      "xronocode.Mark",
@@ -972,8 +1002,8 @@
   ],
   [
    "2026-11-17",
-   16415,
-   196338
+   16421,
+   196517
   ]
  ]
 }

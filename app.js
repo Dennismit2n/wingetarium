@@ -15,9 +15,30 @@ const BEFEHLE = [
 ];
 /* Bekannte Namen, die früher fehlten: erscheinen unter „Lücken“, solange sie fehlen. */
 const LUECKEN = [['signal', 'Signal Desktop'], ['musicbee', 'MusicBee']];
+/* Stöbern: Themen sind Bündel von Schlagworten aus den Manifesten (die sind fast immer Englisch). */
+const THEMEN = {
+  browser: ['browser', 'web-browser', 'webbrowser', 'chromium'],
+  ai: ['ai', 'llm', 'large-language-model', 'chatbot', 'chatgpt', 'artificial-intelligence', 'ollama', 'mcp'],
+  dev: ['programming', 'developer-tools', 'ide', 'coding', 'development', 'git', 'compiler', 'debug'],
+  editor: ['editor', 'text-editor', 'markdown', 'notes', 'writing', 'mindmap', 'mind-map'],
+  terminal: ['terminal', 'cli', 'command-line', 'shell', 'powershell', 'tui', 'console'],
+  office: ['office', 'pdf', 'document', 'ebook', 'presentation', 'excel', 'calendar', 'todo', 'ocr'],
+  image: ['image', 'photo', 'picture', 'graphics', 'drawing', 'design', '3d', 'cad', 'screenshot'],
+  video: ['video', 'player', 'streaming', 'screen-capture', 'recording', 'ffmpeg', 'youtube', 'codec'],
+  audio: ['audio', 'music', 'music-player', 'sound', 'radio', 'podcast', 'speech-to-text', 'dictation'],
+  chat: ['chat', 'email', 'mail', 'meeting', 'video-conferencing', 'discord', 'collaboration', 'outlook'],
+  security: ['security', 'privacy', 'password', 'encryption', 'vpn', 'protection', 'antivirus'],
+  files: ['file-manager', 'backup', 'sync', 'archive', 'compression', 'cloud-drive', 'recovery', 'disk', 'files'],
+  network: ['network', 'ssh', 'sftp', 'ftp', 'remote-desktop', 'remote-access', 'proxy', 'downloader', 'file-transfer'],
+  system: ['utility', 'system', 'monitoring', 'hardware', 'cleaner', 'benchmark', 'keyboard', 'mouse', 'clipboard', 'hotkey', 'launcher'],
+  games: ['game', 'games', 'gaming', 'emulator', 'minecraft', 'videogame'],
+  data: ['database', 'sql', 'mysql', 'postgresql', 'sqlite', 'docker', 'kubernetes', 'devops', 'server']
+};
+/* Schlagworte, die fast jedes Paket trägt oder die nur Firefox-Sprachpakete markieren: nicht in die Wolke. */
+const WOLKE_OHNE = new Set(['windows', 'cross-platform', 'gecko', 'quantum', 'spidermonkey', 'mozilla', 'foss', 'open-source', 'tool', 'tools', 'app', 'desktop', 'requirescmd', 'hacktoberfest', 'prc', 'china', 'trial']);
 
 const $ = id => document.getElementById(id);
-const S = { lang: 'de', T: null, stand: null, auswahl: [], cat: null, sortK: 'cat', sortDir: 1, q: '', index: null, qa: '', tab: 'o' };
+const S = { lang: 'de', T: null, stand: null, auswahl: [], cat: null, sortK: 'cat', sortDir: 1, q: '', index: null, qa: '', fa: null, tab: 'o', texte: {}, sb: null };
 const T = () => S.T || {};
 
 function laden(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -36,7 +57,7 @@ async function kopiere(text) {
   let ok = false;
   try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
     const ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.append(ta); ta.select(); try { ok = document.execCommand('copy'); } catch (x) {} ta.remove();
+    (document.querySelector('dialog[open]') || document.body).append(ta); ta.select(); // ein offener Dialog sperrt alles außerhalb try { ok = document.execCommand('copy'); } catch (x) {} ta.remove();
   }
   toast(fmt(ok ? T().copied : T().copyFail, { c: text }));
 }
@@ -167,28 +188,108 @@ function zeichneTabelle() {
   });
 }
 
-/* Alle Pakete: Index erst laden, wenn der Reiter offen ist */
-async function holeIndex() {
-  if (S.index) return S.index;
+/* Alle Pakete: Index erst laden, wenn er gebraucht wird (Reiter offen oder Steckbrief).
+   Zeile in index.json: [id, name, version, kurzname, kurzbeschreibung, "schlagwort schlagwort …"] */
+let indexLaden = null;
+function holeIndex() {
+  if (S.index) return Promise.resolve(S.index);
+  if (indexLaden) return indexLaden;
   $('empty-a').textContent = T().searchAllLoading;
-  try {
-    const j = await holeJson('./data/index.json');
-    S.index = j.p.map(z => ({ z, s: (z[0] + ' ' + z[1] + ' ' + (z[3] || '')).toLowerCase() }));
-  } catch (e) { $('empty-a').textContent = T().loadError; return null; }
-  zeichneAlle();
-  return S.index;
+  indexLaden = holeJson('./data/index.json').then(j => {
+    const kuratiert = new Set(S.auswahl.map(e => e.id));
+    S.index = j.p.map(z => ({
+      z, tags: z[5] ? z[5].split(' ') : [], top: kuratiert.has(z[0]),
+      n: (z[0] + ' ' + z[1] + ' ' + (z[3] || '')).toLowerCase(),
+      s: (z[0] + ' ' + z[1] + ' ' + (z[3] || '') + ' ' + (z[4] || '') + ' ' + (z[5] || '')).toLowerCase()
+    }));
+    S.indexId = new Map(S.index.map(e => [e.z[0], e]));
+    const zaehl = new Map();
+    S.index.forEach(e => e.tags.forEach(t => zaehl.set(t, (zaehl.get(t) || 0) + 1)));
+    S.wolke = [...zaehl].filter(([t]) => /^[a-z0-9][a-z0-9.+#-]*$/.test(t) && !WOLKE_OHNE.has(t)).sort((a, b) => b[1] - a[1]).slice(0, 48);
+    S.themenZahl = {};
+    Object.keys(THEMEN).forEach(k => { const m = new Set(THEMEN[k]); S.themenZahl[k] = S.index.filter(e => e.tags.some(t => m.has(t))).length; });
+    zeichneAlle();
+    return S.index;
+  }).catch(() => { indexLaden = null; $('empty-a').textContent = T().loadError; return null; });
+  return indexLaden;
 }
+function filterName(f) { return f.typ === 'thema' ? (T().themes || {})[f.key] || f.key : f.key; }
 function zeichneAlle() {
   const t = T(), q = S.qa.trim().toLowerCase(), MAX = 200;
-  if (!S.index) { $('count-a').textContent = ''; return; }
-  if (q.length < 2) { $('rows-a').innerHTML = ''; $('count-a').textContent = ''; $('empty-a').textContent = t.searchAllHint; return; }
-  const teile = q.split(/\s+/);
-  const r = S.index.filter(e => teile.every(w => e.s.includes(w)));
-  r.sort((a, b) => (b.z[0].toLowerCase() === q) - (a.z[0].toLowerCase() === q) || (b.z[3] === q) - (a.z[3] === q) || a.z[0].localeCompare(b.z[0]));
-  $('rows-a').innerHTML = r.slice(0, MAX).map(({ z }) => '<tr><td><button class="c-id" type="button" data-id="' + esc(z[0]) + '">' + esc(z[0]) + '</button></td><td class="c-name">' + esc(z[1]) + '</td><td class="c-ver">' + esc(z[2]) + '</td><td class="c-ver">' + esc(z[3] || '') + '</td></tr>').join('');
+  if (!S.index) { $('count-a').textContent = ''; $('stoebern').hidden = true; return; }
+  const f = S.fa;
+  $('filter-a').hidden = !f;
+  $('filter-a').innerHTML = f ? '<button class="chip" type="button" id="filter-weg" aria-pressed="true" aria-label="' + esc(t.filterClear) + '">' + esc(fmt(t.filterLabel, { f: filterName(f) })) + '<span class="c" aria-hidden="true">✕</span></button>' : '';
+  const stoebern = !f && q.length < 2;
+  $('stoebern').hidden = !stoebern;
+  if (stoebern) {
+    $('themen').innerHTML = Object.keys(THEMEN).map(k => '<button class="thema" type="button" data-thema="' + k + '"><span>' + esc((t.themes || {})[k] || k) + '</span><span class="c">' + zahl(S.themenZahl[k]) + '</span></button>').join('');
+    $('wolke').innerHTML = S.wolke.map(([w, n]) => '<button class="chip" type="button" data-tag="' + esc(w) + '">' + esc(w) + '<span class="c">' + zahl(n) + '</span></button>').join('');
+    $('rows-a').innerHTML = ''; $('count-a').textContent = ''; $('empty-a').textContent = q.length === 1 ? t.searchAllHint : '';
+    return;
+  }
+  const teile = q.length >= 2 ? q.split(/\s+/) : [];
+  const fset = f ? new Set(f.typ === 'thema' ? THEMEN[f.key] : [f.key]) : null;
+  const r = S.index.filter(e => (!fset || e.tags.some(x => fset.has(x))) && teile.every(w => e.s.includes(w)));
+  // Rang: genauer Name oder Kurzname, dann Treffer im Namen, dann in Schlagworten, dann nur in der Beschreibung. Auswahl zuerst.
+  const rang = e => !q ? 0 : (e.z[1].toLowerCase() === q || e.z[3] === q || e.z[0].toLowerCase() === q) ? 0 : teile.every(w => e.n.includes(w)) ? 1 : teile.every(w => e.tags.some(x => x.includes(w)) || e.n.includes(w)) ? 2 : 3;
+  r.forEach(e => { e.r = rang(e); });
+  r.sort((a, b) => a.r - b.r || b.top - a.top || a.z[1].localeCompare(b.z[1], S.lang, { sensitivity: 'base' }));
+  $('rows-a').innerHTML = r.slice(0, MAX).map(({ z }) => '<li><button class="paket" type="button" data-id="' + esc(z[0]) + '"><span class="p-kopf"><span class="p-name">' + esc(z[1]) + '</span><span class="p-ver">' + esc(z[2]) + '</span></span><span class="p-id">' + esc(z[0]) + '</span>' + (z[4] ? '<span class="p-kurz">' + esc(z[4]) + '</span>' : '') + '</button></li>').join('');
   $('count-a').textContent = fmt(t.countOf, { n: zahl(r.length), m: zahl(S.index.length) });
   $('empty-a').textContent = !r.length ? t.empty : (r.length > MAX ? fmt(t.searchAllMore, { n: MAX, m: zahl(r.length) }) : '');
 }
+function setzeFilter(f) {
+  S.fa = f; S.qa = ''; $('qa').value = '';
+  if (S.tab !== 'a') zeigeTab('a');
+  zeichneAlle();
+  $('qa').scrollIntoView({ block: 'nearest' });
+}
+
+/* Steckbrief: was ein Paket ist und kann. Lange Texte liegen in data/text/<erstes Zeichen>.json:
+   { id: [hash, kurz, herausgeber, lizenz, webseite, beschreibung] } */
+function teil(id) { const c = id.charAt(0).toLowerCase(); return /[a-z0-9]/.test(c) ? c : '_'; }
+function holeTexte(id) {
+  const k = teil(id);
+  if (!S.texte[k]) S.texte[k] = holeJson('./data/text/' + k + '.json').catch(() => { delete S.texte[k]; return {}; });
+  return S.texte[k].then(d => d[id] || null);
+}
+function manifestUrl(id, v) {
+  return 'https://github.com/microsoft/winget-pkgs/tree/master/manifests/' + id.charAt(0).toLowerCase() + '/' + id.split('.').map(encodeURIComponent).join('/') + (v ? '/' + encodeURIComponent(v) : '');
+}
+async function zeigeSteckbrief(id) {
+  const t = T(), dlg = $('steckbrief');
+  S.sb = id;
+  const a = S.stand.auswahl[id], kur = S.auswahl.find(e => e.id === id);
+  const fuellen = (e, x) => {
+    if (S.sb !== id) return;
+    const z = e ? e.z : [id, (a && a.n) || id, (a && a.v) || '', '', '', ''];
+    const name = z[1], v = z[2], kurz = (x && x[1]) || z[4];
+    $('sb-name').textContent = name;
+    $('sb-id').textContent = id;
+    $('sb-kurz').textContent = kurz || '';
+    $('sb-kurz').hidden = !kurz;
+    const meta = [[t.colVersion, v], [t.detailPublisher, x && x[2]], [t.detailLicense, x && x[3]], [t.colMoniker, z[3]]];
+    if (kur) meta.push([t.colCost, t.costs[kur.cost]], [t.colCat, t.cats[kur.cat]]);
+    $('sb-meta').innerHTML = meta.filter(m => m[1]).map(([k, w]) => '<div><dt>' + esc(k) + '</dt><dd>' + esc(w) + '</dd></div>').join('');
+    const warum = kur && (t.why || {})[id];
+    $('sb-warum').innerHTML = warum ? '<div class="sb-warum"><div class="klein">' + esc(t.detailWhy) + '</div><p>' + esc(warum) + '</p></div>' : '';
+    $('sb-lang').textContent = x === undefined ? t.detailLoading : (x && x[5] && x[5] !== kurz ? x[5] : (x ? '' : t.detailNoDesc));
+    $('sb-lang').hidden = !$('sb-lang').textContent;
+    const tags = e ? e.tags : [];
+    $('sb-tags').innerHTML = tags.length ? '<span class="klein sb-tags-t">' + esc(t.detailTags) + '</span>' + tags.map(w => '<button class="chip" type="button" data-tag="' + esc(w) + '">' + esc(w) + '</button>').join('') : '';
+    const web = x && /^https?:\/\//i.test(x[4]) ? x[4] : '';
+    $('sb-links').innerHTML = (web ? '<a href="' + esc(web) + '" target="_blank" rel="noopener noreferrer">' + esc(t.detailHome) + '</a>' : '') +
+      '<a href="' + esc(manifestUrl(id, v)) + '" target="_blank" rel="noopener noreferrer">' + esc(t.detailManifest) + '</a>';
+    $('sb-cmd').textContent = installBefehl(id);
+  };
+  fuellen(S.indexId && S.indexId.get(id), undefined);
+  if (!dlg.open) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }
+  dlg.scrollTop = 0;
+  const [, x] = await Promise.all([holeIndex(), holeTexte(id)]);
+  fuellen(S.indexId && S.indexId.get(id), x);
+}
+function schliesseSteckbrief() { const d = $('steckbrief'); S.sb = null; if (d.close) d.close(); else d.removeAttribute('open'); }
 
 function zeichneNeu() {
   const t = T(), neu = S.stand.neu || [];
@@ -264,10 +365,18 @@ document.querySelector('.tabs').addEventListener('keydown', e => {
 });
 window.addEventListener('hashchange', () => zeigeTab(tabAusHash()));
 document.addEventListener('click', e => {
-  const id = e.target.closest('.c-id'); if (id) return kopiere(installBefehl(id.dataset.id));
+  const id = e.target.closest('.c-id, .paket'); if (id) return zeigeSteckbrief(id.dataset.id);
   const c = e.target.closest('.cmd-code'); if (c) return kopiere(c.dataset.c);
-  const ch = e.target.closest('.chip'); if (ch) { S.cat = ch.dataset.c || null; zeichneChips(); zeichneTabelle(); }
+  const th = e.target.closest('.thema'); if (th) return setzeFilter({ typ: 'thema', key: th.dataset.thema });
+  const tg = e.target.closest('[data-tag]'); if (tg) { if ($('steckbrief').open) schliesseSteckbrief(); return setzeFilter({ typ: 'tag', key: tg.dataset.tag }); }
+  if (e.target.closest('#filter-weg')) { S.fa = null; zeichneAlle(); return $('qa').focus(); }
+  const ch = e.target.closest('#chips .chip'); if (ch) { S.cat = ch.dataset.c || null; zeichneChips(); zeichneTabelle(); }
 });
+$('sb-kopie').addEventListener('click', () => kopiere($('sb-cmd').textContent));
+$('sb-zu').addEventListener('click', schliesseSteckbrief);
+// Klick auf den abgedunkelten Rand schließt; Esc schließt der Browser selbst.
+$('steckbrief').addEventListener('click', e => { if (e.target === $('steckbrief')) schliesseSteckbrief(); });
+$('steckbrief').addEventListener('close', () => { S.sb = null; });
 function sortiere(th) { const k = th.dataset.k; if (S.sortK === k) S.sortDir *= -1; else { S.sortK = k; S.sortDir = 1; } zeichneTabelle(); }
 document.querySelector('table.auswahl thead').addEventListener('click', e => { const th = e.target.closest('th'); if (th) sortiere(th); });
 document.querySelector('table.auswahl thead').addEventListener('keydown', e => { const th = e.target.closest('th'); if (th && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); sortiere(th); } });

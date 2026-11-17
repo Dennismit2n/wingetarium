@@ -1,0 +1,7 @@
+{
+"9001.copyparty":["7fbaa50d185c","Portable file server with accelerated resumable uploads, dedup, WebDAV, FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no deps","ocv.me","MIT","https://github.com/9001/copyparty/releases/tag/v1.19.17","Portable file server with accelerated resumable uploads, dedup, WebDAV, FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no deps"],
+"990aa.Kivixa":["c9f631bac2d2","A privacy-first cross-platform productivity workspace for notes, sketching, planning, and local AI assistance","990aa","MIT","https://github.com/990aa/kivixa",""],
+"996xiaozhe.SoftKVM.Beta":["61eaeb0f09b0","通过 DDC/CI 扫描并切换多台显示器输入源的 Windows 工具","softkvm","Proprietary","https://github.com/996xiaozhe/softKVM","SoftKVM 是一款 Windows 原生显示器输入源切换工具，可扫描支持 DDC/CI 的物理显示器，将设备映射到多台显示器端口，并通过全局快捷键同步切换 HDMI 或 DisplayPort 输入源。"],
+"99designs.aws-vault":["6b0254df693a","A vault for securely storing and accessing AWS credentials in development environments","99designs","MIT","https://github.com/99designs/aws-vault",""],
+"99natmar99.Windows11Fixer":["1097e18fdb8c","Designed to make customizing your Windows 11 as easy as possible.","99natmar99","MIT","https://github.com/99natmar99/Windows-11-Fixer",""]
+}

@@ -13,8 +13,8 @@
 | | |
 |---|---|
 | **Overview** | Package count, manifests, versions and short names from today’s index, the 20 most common tags and a curve that grows by one point every morning. |
-| **Hand-picked** | 108 packages in 15 categories with today’s version, what it costs and what it is good for. Sort by any column, filter by category, search. A click on the ID copies `winget install --id … -e`. |
-| **All packages** | Search the complete index (more than 16,000 packages) by name, ID or short name, right in your browser. |
+| **Hand-picked** | 108 packages in 15 categories with today’s version, what it costs and what it is good for. Sort by any column, filter by category, search. A click on the ID opens the package profile. |
+| **All packages** | Search the complete index (more than 16,000 packages) by name, ID, description or tag, right in your browser. Not sure what to look for? Browse 16 topics or the most common tags. A click on a package opens its profile: what it is, what it does, publisher, license, website and `winget install --id … -e` to copy. |
 | **New** | Every package that appeared since the day before, for the last 30 days. |
 | **Commands** | The winget commands you really need, grouped from finding to moving a whole PC. One click copies. |
 | **Limits** | What winget cannot do (graphics drivers, game libraries, fonts, scheduled updates …), with numbers counted from today’s index. |

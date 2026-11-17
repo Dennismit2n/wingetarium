@@ -27,9 +27,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        if: github.event_name != 'push'
+        with:
+          python-version: '3.12'
+
       - name: winget-Index auswerten
         if: github.event_name != 'push'
-        run: python3 tools/aktualisieren.py
+        run: |
+          python -m pip install --quiet pyyaml
+          python tools/aktualisieren.py
 
       - name: Neuen Stand committen
         if: github.event_name != 'push'

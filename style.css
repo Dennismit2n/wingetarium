@@ -173,10 +173,8 @@ code { font-family: var(--mono); font-size: .9em; background: var(--index-soft);
 .tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); box-shadow: var(--shadow); }
 table { border-collapse: collapse; width: 100%; table-layout: fixed; }
 table.auswahl { min-width: 900px; }
-table.alle { min-width: 640px; }
 col.w-id { width: 20%; } col.w-name { width: 15%; } col.w-cat { width: 13%; }
 col.w-ver { width: 13%; } col.w-cost { width: 14%; } col.w-why { width: 25%; }
-col.w-aid { width: 34%; } col.w-aname { width: 34%; } col.w-aver { width: 16%; } col.w-amon { width: 16%; }
 thead th {
   position: sticky; top: 0; z-index: 2; background: var(--card-2); border-bottom: 1px solid var(--rule);
   font-family: var(--cond); font-weight: 600; font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase;
@@ -205,6 +203,50 @@ tbody tr:hover { background: var(--card-2); }
 .t-paid { background: var(--no-bg); color: var(--no); }
 .empty { padding: 30px 18px; text-align: center; color: var(--ink-3); font-size: 14px; }
 .empty:empty { display: none; }
+
+/* Alle Pakete: Stöbern und Trefferliste */
+.themen { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 8px; margin: 14px 0 6px; }
+.thema {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px; text-align: left; cursor: pointer;
+  font: 500 14px/1.35 var(--sans); color: var(--ink); background: var(--card-2); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px;
+}
+.thema:hover { border-color: var(--index-line); color: var(--index); }
+.thema:focus-visible { outline: 2px solid var(--index); outline-offset: 2px; }
+.thema .c, .p-ver { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.wolke-t { margin: 18px 0 8px; }
+.treffer { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 8px; }
+.paket {
+  display: flex; flex-direction: column; gap: 3px; width: 100%; height: 100%; text-align: left; cursor: pointer; color: var(--ink);
+  background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; font: inherit;
+}
+.paket:hover { border-color: var(--index-line); background: var(--card-2); }
+.paket:focus-visible { outline: 2px solid var(--index); outline-offset: 2px; }
+.p-kopf { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; min-width: 0; }
+.p-name { font-weight: 600; font-size: 14px; overflow-wrap: anywhere; }
+.p-ver { white-space: nowrap; }
+.p-id { font-family: var(--mono); font-size: 11.5px; color: var(--index); overflow-wrap: anywhere; }
+.p-kurz { font-size: 13px; color: var(--ink-2); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Steckbrief */
+.steckbrief { width: min(680px, calc(100vw - 32px)); max-height: calc(100vh - 48px); overflow: auto; color: var(--ink); padding: 22px; margin: auto; }
+.steckbrief::backdrop { background: rgba(5, 8, 12, .72); }
+.sb-kopf { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
+.sb-kopf h2 { margin: 0; overflow-wrap: anywhere; }
+.sb-id { font-family: var(--mono); font-size: 12px; color: var(--index); margin-top: 3px; overflow-wrap: anywhere; }
+.steckbrief .lead { margin: 14px 0 0; }
+.sb-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 0; }
+.sb-meta dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.sb-meta dd { margin: 2px 0 0; font-size: 13.5px; overflow-wrap: anywhere; }
+.sb-warum { margin-top: 14px; border-left: 3px solid var(--index); padding-left: 12px; }
+.sb-warum p { margin: 2px 0 0; font-size: 13.5px; }
+.sb-lang { margin-top: 14px; font-size: 13.5px; color: var(--ink-2); white-space: pre-line; line-height: 1.55; }
+#sb-tags { margin: 14px 0 0; align-items: center; }
+#sb-tags:empty { display: none; }
+.sb-tags-t { margin-right: 4px; }
+.sb-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 14px 0 0; font-size: 13.5px; }
+.sb-befehl { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule-soft); }
+.sb-zeile { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-top: 6px; }
+.sb-zeile code { flex: 1 1 260px; font-family: var(--mono); font-size: 12.5px; background: var(--card-2); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; overflow-wrap: anywhere; }
 
 /* Neu im Repo */
 .neu-tag { margin-top: 18px; }

@@ -1,0 +1,8 @@
+{
+"53Software.VRAMShield":["7f7429be8712","VRAMShield_2.2.2.exe","53Software","Proprietary","",""],
+"54145a.145watch":["c6489013e973","watch","145a","GPL-3.0","https://github.com/54145a/145watch",""],
+"5c0.Metropolis":["bc9fa937735a","Cyberpunk TUI system monitor","5c0","MIT","https://github.com/5c0/metropolis",""],
+"5E.5EClient":["14315b94ba2a","A professional CS: GO matchmaking platform from 5EPlay","杭州赛凡科技有限公司","Proprietary","","5EClient is a CS: GO matchmaking software that boasts over ten million registered active players and is the preferred platform for CS: GO players. The platform features proprietary state-of-the-art anti-cheating technologies as well as in-game reporting and voting to ensure a fair and enjoyable gaming experience for all players. Additionally, the platform has 128-tick competitive-grade servers to deliver a smooth gaming experience for all players. Moreover, the platform offers comprehensive game data analysis, helping players review their matches and providing professional analysis results."],
+"5mdt.WinGoDarkTray":["c489793cf720","A windows app to toggle light and dark mode from the system tray. Fork of https://github.com/anboris/godark","5mdt","GPL-3.0","https://github.com/5mdt/WinGoDarkTray",""],
+"5rahim.Seanime":["b19d22bf4581","Open-source media server with a Web UI and Desktop app for anime and manga.","5rahim","GPL-3.0","https://github.com/5rahim/seanime","Seanime is a media server with a web interface and desktop app for watching anime, reading manga, and managing your local library. Seanime provides a collection of features to enhance your watching and reading experience. Local library management, transcoding, Bittorrent or Debrid downloading and streaming, offline viewing, and more."]
+}

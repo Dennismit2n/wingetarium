@@ -55,7 +55,7 @@
 </script>
 <!-- Bei jedem Deploy, der CSS oder JS ändert: ?v= hochsetzen UND in sw.js den CACHE. -->
 <link rel="stylesheet" href="./fonts/plex.css?v=2026-11-12b">
-<link rel="stylesheet" href="./style.css?v=2026-11-12b">
+<link rel="stylesheet" href="./style.css?v=2026-11-17">
 </head>
 <body>
 <header class="mast">
@@ -152,17 +152,17 @@
     <input class="search" id="qa" type="search" autocomplete="off" spellcheck="false">
     <span class="count" id="count-a"></span>
   </div>
-  <div class="tbl-wrap">
-    <table class="alle">
-      <colgroup><col class="w-aid"><col class="w-aname"><col class="w-aver"><col class="w-amon"></colgroup>
-      <thead><tr>
-        <th scope="col" data-i="colId"></th><th scope="col" data-i="colName"></th>
-        <th scope="col" data-i="colVersion"></th><th scope="col" data-i="colMoniker"></th>
-      </tr></thead>
-      <tbody id="rows-a"></tbody>
-    </table>
-    <div class="empty" id="empty-a"></div>
+  <div class="chips" id="filter-a" hidden></div>
+  <div class="panel" id="stoebern" hidden>
+    <h2 data-i="exploreTitle"></h2>
+    <p class="klein" data-i="exploreIntro"></p>
+    <div class="themen" id="themen"></div>
+    <h3 class="wolke-t" data-i="tagCloudTitle"></h3>
+    <div class="chips last" id="wolke"></div>
+    <p class="note" data-i="langNote"></p>
   </div>
+  <ul class="treffer" id="rows-a"></ul>
+  <div class="empty" id="empty-a"></div>
 </section>
 
 <section role="tabpanel" id="p-n" aria-labelledby="tab-n" hidden>
@@ -195,7 +195,27 @@
 <footer class="foot" data-h="foot"></footer>
 </main>
 
+<dialog class="panel steckbrief" id="steckbrief" aria-labelledby="sb-name">
+  <div class="sb-kopf">
+    <div>
+      <h2 id="sb-name"></h2>
+      <div class="sb-id" id="sb-id"></div>
+    </div>
+    <button class="knopf" id="sb-zu" type="button" data-i="detailClose">Schließen</button>
+  </div>
+  <p class="lead" id="sb-kurz"></p>
+  <dl class="sb-meta" id="sb-meta"></dl>
+  <div id="sb-warum"></div>
+  <div class="sb-lang" id="sb-lang"></div>
+  <div class="chips" id="sb-tags"></div>
+  <p class="sb-links" id="sb-links"></p>
+  <div class="sb-befehl">
+    <div class="klein" data-i="detailInstall"></div>
+    <div class="sb-zeile"><code id="sb-cmd"></code><button class="knopf akzent" id="sb-kopie" type="button" data-i="detailCopy">Kopieren</button></div>
+  </div>
+</dialog>
+
 <div id="toast" role="status" aria-live="polite"></div>
-<script src="./app.js?v=2026-11-12"></script>
+<script src="./app.js?v=2026-11-17"></script>
 </body>
 </html>
