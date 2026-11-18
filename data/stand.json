@@ -1,9 +1,9 @@
 {
- "stand": "2026-11-17T21:20:18Z",
- "abgerufen": "2026-11-17T23:08:42Z",
- "pakete": 16421,
- "manifeste": 196517,
- "versionen": 70667,
+ "stand": "2026-11-18T13:24:11Z",
+ "abgerufen": "2026-11-18T14:04:05Z",
+ "pakete": 16422,
+ "manifeste": 196774,
+ "versionen": 70769,
  "kurznamen": 6042,
  "herausgeber": [
   [
@@ -259,7 +259,7 @@
    "n": "Git"
   },
   "GitHub.cli": {
-   "v": "2.104.0",
+   "v": "2.105.0",
    "n": "GitHub CLI"
   },
   "GitHub.GitHubDesktop": {
@@ -475,7 +475,7 @@
    "n": "MobaXterm"
   },
   "Postman.Postman": {
-   "v": "12.37.1",
+   "v": "12.37.2",
    "n": "Postman"
   },
   "Insomnia.Insomnia": {
@@ -553,6 +553,16 @@
   "musicbee": false
  },
  "neu": [
+  {
+   "d": "2026-11-18",
+   "p": [
+    [
+     "SCSoftware.HEICStudio",
+     "HEIC Studio",
+     "1.1.2"
+    ]
+   ]
+  },
   {
    "d": "2026-11-17",
    "p": [
@@ -1004,6 +1014,11 @@
    "2026-11-17",
    16421,
    196517
+  ],
+  [
+   "2026-11-18",
+   16422,
+   196774
   ]
  ]
 }

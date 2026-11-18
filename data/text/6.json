@@ -1,5 +1,5 @@
 {
 "63BeetleSmurf.PinnyNotes":["f11dcb2c5015","A sticky note application with a button to \"pin\" a note making it always on top above other windows.","63BeetleSmurf","GPL-2.0","https://github.com/63BeetleSmurf/PinnyNotes",""],
-"64Gram.64Gram":["24e909cc0933","Unofficial Telegram Desktop","64Gram","GPLv3 with OpenSSL exception","https://github.com/TDesktop-x64/tdesktop",""],
+"64Gram.64Gram":["d9a516518b3f","Unofficial Telegram Desktop client with extra features and enhancements.","64Gram","GPL-3.0-or-later WITH OpenSSL-exception","https://github.com/TDesktop-x64/tdesktop","64Gram is an unofficial fork of Telegram Desktop that provides native 64-bit builds along with several additional features, UI customizations, and quality-of-life enhancements."],
 "66HEX.Frame":["b39be08b3be4","Frame is a high-performance media conversion utility built with Rust and GPUI. It provides a native interface for FFmpeg operations.","Marek Jóźwiak","GPL-3.0","https://www.framegui.app/","Frame is a high-performance media conversion utility built with Rust and GPUI. It provides a native interface for FFmpeg operations, allowing for granular control over video, audio, image, subtitle, and metadata transcoding parameters. The application leverages a Rust-native architecture for concurrent task management, hardware encoding, and local process execution."]
 }
