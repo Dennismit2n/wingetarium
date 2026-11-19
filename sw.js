@@ -6,7 +6,7 @@
 'use strict';
 
 // Bei jedem Deploy, der index.html, style.css, app.js oder die Sprachdateien ändert, um 1 erhöhen.
-const CACHE = 'wingetarium-v4';
+const CACHE = 'wingetarium-v5';
 const DATEN = 'wingetarium-daten';
 const SPRACHEN = ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'tr', 'ru', 'hi', 'zh', 'ja', 'ko'];
 const SHELL = [

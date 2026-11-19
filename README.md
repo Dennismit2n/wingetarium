@@ -43,7 +43,7 @@ Wingetarium is a PWA. Use the **Install** button in the header (Chrome, Edge, An
 
 ## Appearance
 
-System, light, dark, high contrast (dark and light), colour-blind (dark and light) and inverted colours. The choice is shared with the other tools on dennismit2n.github.io.
+System, light, dark, high contrast (dark and light), color-blind (dark and light) and inverted colors. The choice is shared with the other tools on dennismit2n.github.io.
 
 ## Not affiliated
 
