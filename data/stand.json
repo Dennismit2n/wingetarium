@@ -1,14 +1,14 @@
 {
- "stand": "2026-11-18T13:24:11Z",
- "abgerufen": "2026-11-18T14:04:05Z",
+ "stand": "2026-11-19T13:00:39Z",
+ "abgerufen": "2026-11-19T14:28:01Z",
  "pakete": 16422,
- "manifeste": 196774,
- "versionen": 70769,
- "kurznamen": 6042,
+ "manifeste": 197470,
+ "versionen": 70971,
+ "kurznamen": 6044,
  "herausgeber": [
   [
    "Microsoft",
-   463
+   462
   ],
   [
    "Mozilla",
@@ -30,11 +30,11 @@
  "tags": [
   [
    "cli",
-   1021
+   1022
   ],
   [
    "ai",
-   783
+   782
   ],
   [
    "windows",
@@ -54,7 +54,7 @@
   ],
   [
    "llm",
-   444
+   443
   ],
   [
    "rust",
@@ -82,11 +82,11 @@
   ],
   [
    "programming",
-   354
+   353
   ],
   [
    "agent",
-   341
+   340
   ],
   [
    "foss",
@@ -94,7 +94,7 @@
   ],
   [
    "large-language-model",
-   337
+   336
   ],
   [
    "java",
@@ -111,27 +111,27 @@
  ],
  "auswahl": {
   "Mozilla.Firefox": {
-   "v": "160.0",
+   "v": "160.0.1",
    "n": "Mozilla Firefox (en-US)"
   },
   "Google.Chrome": {
-   "v": "157.0.8103.79",
+   "v": "158.0.8127.37",
    "n": "Google Chrome"
   },
   "Brave.Brave": {
-   "v": "157.1.99.56",
+   "v": "158.1.100.58",
    "n": "Brave"
   },
   "Vivaldi.Vivaldi": {
-   "v": "8.3.4191.44",
+   "v": "8.3.4191.45",
    "n": "Vivaldi"
   },
   "Zen-Team.Zen-Browser": {
-   "v": "1.24.1b",
+   "v": "1.24.3b",
    "n": "Zen Browser"
   },
   "LibreWolf.LibreWolf": {
-   "v": "160.0-1",
+   "v": "160.0.1-1",
    "n": "LibreWolf"
   },
   "Microsoft.Edge": {
@@ -143,7 +143,7 @@
    "n": "Microsoft Visual Studio Code"
   },
   "ZedIndustries.Zed": {
-   "v": "1.28.1",
+   "v": "1.29.2",
    "n": "Zed"
   },
   "Microsoft.VisualStudio.2022.Community": {
@@ -323,7 +323,7 @@
    "n": "TIDAL"
   },
   "Spotify.Spotify": {
-   "v": "1.3.9.2055.g806b5b278de8",
+   "v": "1.3.10.2586.g81a118a22460",
    "n": "Spotify"
   },
   "th-ch.YouTubeMusic": {
@@ -387,11 +387,11 @@
    "n": "GOG GALAXY"
   },
   "ElectronicArts.EADesktop": {
-   "v": "13.827.2.6342",
+   "v": "13.832.0.6345",
    "n": "EA app"
   },
   "Ubisoft.Connect": {
-   "v": "175.1.0.13416",
+   "v": "175.2.0.13423",
    "n": "Ubisoft Connect"
   },
   "Discord.Discord": {
@@ -475,7 +475,7 @@
    "n": "MobaXterm"
   },
   "Postman.Postman": {
-   "v": "12.37.2",
+   "v": "12.37.3",
    "n": "Postman"
   },
   "Insomnia.Insomnia": {
@@ -553,6 +553,46 @@
   "musicbee": false
  },
  "neu": [
+  {
+   "d": "2026-11-19",
+   "p": [
+    [
+     "Avarwand.ABFZ",
+     "ABFZ",
+     "1.4"
+    ],
+    [
+     "Avarwand.APC",
+     "APC",
+     "2.5"
+    ],
+    [
+     "Awake.AwakeSimpleS1",
+     "Awake Simple Series 1",
+     "1.0"
+    ],
+    [
+     "CrawlCove.CrawlCove",
+     "Crawl Cove",
+     "1.1.0"
+    ],
+    [
+     "Ontiqo.Guestbay",
+     "Guestbay",
+     "1.8.1.0"
+    ],
+    [
+     "RodolphoBrock.labctl",
+     "labctl (unofficial Windows build)",
+     "0.1.112-win.2"
+    ],
+    [
+     "SmartDraw.SmartDraw",
+     "SmartDraw",
+     "24.4.17"
+    ]
+   ]
+  },
   {
    "d": "2026-11-18",
    "p": [
@@ -1019,6 +1059,11 @@
    "2026-11-18",
    16422,
    196774
+  ],
+  [
+   "2026-11-19",
+   16422,
+   197470
   ]
  ]
 }
