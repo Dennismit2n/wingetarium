@@ -1,10 +1,10 @@
 {
- "stand": "2026-11-20T13:20:10Z",
- "abgerufen": "2026-11-20T14:03:44Z",
- "pakete": 16439,
- "manifeste": 197950,
- "versionen": 71128,
- "kurznamen": 6054,
+ "stand": "2026-11-21T11:40:31Z",
+ "abgerufen": "2026-11-21T13:29:55Z",
+ "pakete": 16465,
+ "manifeste": 198886,
+ "versionen": 71350,
+ "kurznamen": 6068,
  "herausgeber": [
   [
    "Microsoft",
@@ -30,15 +30,15 @@
  "tags": [
   [
    "cli",
-   1023
+   1025
   ],
   [
    "ai",
-   783
+   785
   ],
   [
    "windows",
-   506
+   507
   ],
   [
    "web",
@@ -46,7 +46,7 @@
   ],
   [
    "cross-platform",
-   475
+   476
   ],
   [
    "browser",
@@ -54,11 +54,11 @@
   ],
   [
    "llm",
-   443
+   446
   ],
   [
    "rust",
-   393
+   394
   ],
   [
    "video",
@@ -70,7 +70,7 @@
   ],
   [
    "terminal",
-   359
+   361
   ],
   [
    "web-browser",
@@ -82,11 +82,11 @@
   ],
   [
    "programming",
-   353
+   355
   ],
   [
    "agent",
-   340
+   341
   ],
   [
    "foss",
@@ -94,15 +94,15 @@
   ],
   [
    "large-language-model",
-   336
+   337
+  ],
+  [
+   "developer-tools",
+   331
   ],
   [
    "java",
    330
-  ],
-  [
-   "developer-tools",
-   329
   ],
   [
    "electron",
@@ -255,7 +255,7 @@
    "n": "Oracle VirtualBox"
   },
   "Git.Git": {
-   "v": "2.56.0.4",
+   "v": "2.56.1",
    "n": "Git"
   },
   "GitHub.cli": {
@@ -343,7 +343,7 @@
    "n": "HandBrake"
   },
   "OBSProject.OBSStudio": {
-   "v": "33.0.0",
+   "v": "33.0.1",
    "n": "OBS Studio"
   },
   "yt-dlp.yt-dlp": {
@@ -407,7 +407,7 @@
    "n": "NVIDIA Profile Inspector"
   },
   "REALiX.HWiNFO": {
-   "v": "8.54",
+   "v": "8.60",
    "n": "HWiNFO®"
   },
   "CPUID.HWMonitor": {
@@ -475,7 +475,7 @@
    "n": "MobaXterm"
   },
   "Postman.Postman": {
-   "v": "12.37.3",
+   "v": "12.37.4",
    "n": "Postman"
   },
   "Insomnia.Insomnia": {
@@ -535,11 +535,11 @@
    "n": "Zoom Workplace"
   },
   "Anthropic.Claude": {
-   "v": "4.29.0",
+   "v": "6.28899.2",
    "n": "Claude"
   },
   "Anthropic.ClaudeCode": {
-   "v": "2.1.329",
+   "v": "2.1.330",
    "n": "Claude Code"
   }
  },
@@ -553,6 +553,141 @@
   "musicbee": false
  },
  "neu": [
+  {
+   "d": "2026-11-21",
+   "p": [
+    [
+     "AIPOCH.Open-Science",
+     "Open-Science",
+     "1.3.2"
+    ],
+    [
+     "aleksandrreva-eng.llm-test-bench",
+     "LLM Test Bench",
+     "1.0.0"
+    ],
+    [
+     "altamkhan.Otterly",
+     "Otterly",
+     "0.4.1"
+    ],
+    [
+     "Ascending.JarvisRegistryCLI",
+     "jarvis-registry",
+     "0.9.0"
+    ],
+    [
+     "Devigami.SS14AutoJoin",
+     "SS14 Auto-Join",
+     "1.0.0"
+    ],
+    [
+     "ez3689.Breakout",
+     "Breakout",
+     "1.0.0"
+    ],
+    [
+     "Fr3nezy.PolyLoupe",
+     "PolyLoupe",
+     "0.1.0"
+    ],
+    [
+     "HendrikVrey.Sling",
+     "Sling",
+     "1.1.0"
+    ],
+    [
+     "kachakaran6.Beacon",
+     "Beacon",
+     "2.0.4"
+    ],
+    [
+     "kanban-rs.kanban",
+     "kanban",
+     "0.12.2"
+    ],
+    [
+     "Keethesh.Roomy",
+     "Roomy",
+     "0.1.0-beta.1"
+    ],
+    [
+     "Makoto.WinDV2",
+     "WinDV 2",
+     "2.5.1"
+    ],
+    [
+     "MeduzaVPN.MeduzaVPN",
+     "MeduzaVPN",
+     "1.2.43"
+    ],
+    [
+     "mfl28.BoundingBoxEditor",
+     "Bounding Box Editor",
+     "3.0.0"
+    ],
+    [
+     "nimble-123.skills-hub",
+     "skills-hub",
+     "0.4.0"
+    ],
+    [
+     "Nurkamol.SeoAudit",
+     "SEO Audit",
+     "1.41.0"
+    ],
+    [
+     "OpenJS.NodeJS.24",
+     "Node.js 24",
+     "24.22.3"
+    ],
+    [
+     "PixtaleLab.PixtaleSync",
+     "Pixtale Sync",
+     "2.3.0"
+    ],
+    [
+     "Sanford.lsmd",
+     "lsmd",
+     "0.9.2"
+    ],
+    [
+     "SoftOrbits.DuplicatePhotoFinder",
+     "Duplicate Photo Finder",
+     "1.1"
+    ],
+    [
+     "SoftOrbits.OutlookAttachmentExtractor",
+     "Outlook Attachment Extractor",
+     "1.3"
+    ],
+    [
+     "tamvcspk.tgmirror",
+     "tgmirror",
+     "0.1.1"
+    ],
+    [
+     "TechNobo.TcNoAccountSwitcher.Beta",
+     "TcNo Account Switcher",
+     "4.0.9.0"
+    ],
+    [
+     "tianemon.EasyMint",
+     "EasyMint",
+     "1.6.0"
+    ],
+    [
+     "VortexDownloader.VortexDownloader",
+     "Vortex Downloader",
+     "1.1.3"
+    ],
+    [
+     "vPzBrig21.Arma3Sync",
+     "Arma3Sync",
+     "2026.4.15"
+    ]
+   ]
+  },
   {
    "d": "2026-11-20",
    "p": [
@@ -1159,6 +1294,11 @@
    "2026-11-20",
    16439,
    197950
+  ],
+  [
+   "2026-11-21",
+   16465,
+   198886
   ]
  ]
 }
